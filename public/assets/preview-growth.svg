@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="growthGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="500" rx="16" fill="url(#growthGrad)" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- TutoLink Public Feed Header -->
+  <rect x="30" y="20" width="740" height="45" rx="10" fill="#1e293b" />
+  <text x="50" y="48" fill="#f8fafc" font-family="sans-serif" font-weight="bold" font-size="14">🌐 TutoLink Public Feed - Discovery &amp; Student Acquisition</text>
+  <rect x="630" y="28" width="130" height="30" rx="15" fill="#e11d48" opacity="0.2" />
+  <text x="645" y="48" fill="#fb7185" font-weight="bold" font-size="11">🚀 42 Leads This Week</text>
+
+  <!-- Feed Card 1 -->
+  <rect x="30" y="85" width="450" height="180" rx="12" fill="#111827" stroke="#374151" />
+  <circle cx="60" cy="115" r="18" fill="#4f46e5" />
+  <text x="54" y="120" fill="#fff" font-weight="bold" font-size="12">V</text>
+  <text x="90" y="112" fill="#ffffff" font-weight="bold" font-size="13">Verma Science Institute, Kota</text>
+  <text x="90" y="128" fill="#94a3b8" font-size="10">Published a Free Test • 2.4k Students Attempted</text>
+
+  <rect x="50" y="145" width="410" height="60" rx="8" fill="#1e293b" />
+  <text x="65" y="170" fill="#38bdf8" font-weight="bold" font-size="13">🎯 Free All India NEET Physics Mock Test 2026</text>
+  <text x="65" y="190" fill="#cbd5e1" font-size="11">Check your AIR Rank instantly &amp; get detailed solutions!</text>
+
+  <rect x="50" y="215" width="130" height="32" rx="6" fill="#2563eb" />
+  <text x="68" y="236" fill="#ffffff" font-weight="bold" font-size="11">Attempt Test Free</text>
+  
+  <rect x="190" y="215" width="150" height="32" rx="6" fill="#059669" />
+  <text x="205" y="236" fill="#ffffff" font-weight="bold" font-size="11">Enquire Admission</text>
+
+  <!-- Feed Card 2 -->
+  <rect x="30" y="285" width="450" height="185" rx="12" fill="#111827" stroke="#374151" />
+  <circle cx="60" cy="315" r="18" fill="#059669" />
+  <text x="55" y="320" fill="#fff" font-weight="bold" font-size="12">A</text>
+  <text x="90" y="312" fill="#ffffff" font-weight="bold" font-size="13">Apex Commerce Academy</text>
+  <text x="90" y="328" fill="#94a3b8" font-size="10">Shared Study Material • Class 12 Accounts</text>
+
+  <rect x="50" y="345" width="410" height="65" rx="8" fill="#1e293b" />
+  <text x="65" y="370" fill="#fbbf24" font-weight="bold" font-size="13">📄 Complete Partnership Accounts Formulas PDF</text>
+  <text x="65" y="390" fill="#cbd5e1" font-size="11">Downloaded 850+ times by local students in Delhi NCR</text>
+
+  <rect x="50" y="420" width="140" height="32" rx="6" fill="#7c3aed" />
+  <text x="68" y="441" fill="#ffffff" font-weight="bold" font-size="11">Download PDF Notes</text>
+
+  <!-- Right Side Lead Manager Box -->
+  <rect x="500" y="85" width="270" height="385" rx="12" fill="#111827" stroke="#3b82f6" stroke-width="1.5" />
+  <text x="520" y="115" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="14">📥 Incoming Student Leads</text>
+  
+  <rect x="515" y="135" width="240" height="65" rx="8" fill="#1e293b" />
+  <text x="530" y="158" fill="#4ade80" font-weight="bold" font-size="12">Rahul Kumar (Class 11 NEET)</text>
+  <text x="530" y="174" fill="#94a3b8" font-size="10">Phone: 98765***** • From Feed Test</text>
+  <text x="530" y="190" fill="#38bdf8" font-size="10" font-weight="bold">Action: Callback Scheduled Today</text>
+
+  <rect x="515" y="210" width="240" height="65" rx="8" fill="#1e293b" />
+  <text x="530" y="233" fill="#4ade80" font-weight="bold" font-size="12">Neha Singh (Class 12 Maths)</text>
+  <text x="530" y="249" fill="#94a3b8" font-size="10">Phone: 91234***** • Downloaded Notes</text>
+  <text x="530" y="265" fill="#a855f7" font-size="10" font-weight="bold">Action: Demo Batch Link Sent</text>
+
+  <rect x="515" y="285" width="240" height="65" rx="8" fill="#1e293b" />
+  <text x="530" y="308" fill="#4ade80" font-weight="bold" font-size="12">Vikram Roy (Class 10 Board)</text>
+  <text x="530" y="324" fill="#94a3b8" font-size="10">Phone: 99887***** • Enquiry Form</text>
+  <text x="530" y="340" fill="#f59e0b" font-size="10" font-weight="bold">Action: Fee Structure Requested</text>
+</svg>

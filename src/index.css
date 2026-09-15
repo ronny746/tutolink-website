@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Plus Jakarta Sans', 'Nunito', -apple-system, sans-serif;
+    --font-body: 'Nunito', 'Inter', -apple-system, sans-serif;
+    
+    --bg-main: #F4F7F2;
+    --bg-card: #FFFFFF;
+    --bg-input: #FAFCF9;
+    --border-color: #D9E6D1;
+    --border-hover: #B8D4A8;
+    
+    --text-main: #1D3728;
+    --text-muted: #4A6652;
+    --text-heading: #14281B;
+    
+    --primary-sage: #7CA45E;
+    --primary-sage-hover: #658A4A;
+    --primary-sage-light: #EBF5E4;
+    --primary-sage-border: #C6E0B5;
+    
+    --accent-blue: #7493DB;
+    --accent-blue-hover: #5F7FCF;
+    --accent-blue-light: #E4EEFB;
+    --accent-blue-border: #C5D9F8;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-body);
+    background-color: #F4F7F2;
+    color: #1D3728;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: #14281B;
+  }
+}
+
+/* new-tuto Organic Theme Styles */
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 0%, rgba(124, 164, 94, 0.18) 0%, rgba(116, 147, 219, 0.12) 40%, rgba(244, 247, 242, 1) 80%);
+}
+
+.glass-card {
+  background: #FFFFFF;
+  border: 1px solid #D9E6D1;
+  box-shadow: 0 10px 28px rgba(116, 147, 91, 0.08), 0 2px 6px rgba(116, 147, 91, 0.04);
+}
+
+.glass-card-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card-hover:hover {
+  background: #FFFFFF;
+  border-color: #7CA45E;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(116, 147, 91, 0.15);
+}
+
+.glass-pill {
+  background: #EBF5E4;
+  border: 1px solid #C6E0B5;
+  color: #2D4220;
+}
+
+/* Gradient Text matching new-tuto Sage Green + Blue with ultra-high contrast */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #2D4220 0%, #658A4A 40%, #3B5298 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #2A488E 0%, #4A69B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-sage {
+  background: linear-gradient(135deg, #1E3316 0%, #4F6E39 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Buttons in new-tuto theme */
+.shimmer-btn {
+  background: linear-gradient(135deg, #7CA45E 0%, #658A4A 100%);
+  color: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(124, 164, 94, 0.35);
+  transition: all 0.2s ease;
+}
+
+.shimmer-btn:hover {
+  background: linear-gradient(135deg, #658A4A 0%, #4F6E39 100%);
+  box-shadow: 0 12px 28px rgba(124, 164, 94, 0.45);
+  transform: translateY(-1px);
+}
+
+.btn-blue {
+  background: linear-gradient(135deg, #7493DB 0%, #5F7FCF 100%);
+  color: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(116, 147, 219, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-blue:hover {
+  background: linear-gradient(135deg, #5F7FCF 0%, #3B5298 100%);
+  box-shadow: 0 12px 28px rgba(116, 147, 219, 0.45);
+  transform: translateY(-1px);
+}
+
+/* Keyframes & Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 6s ease-in-out infinite 2.5s;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Range input customization with Sage Green thumb */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #D9E6D1;
+  border-radius: 8px;
+  height: 8px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #7CA45E;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(124, 164, 94, 0.5);
+  transition: transform 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F4F7F2;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}

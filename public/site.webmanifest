@@ -1,0 +1,16 @@
+{
+  "name": "TutoLink Coaching Operating System",
+  "short_name": "TutoLink",
+  "description": "All-in-one software for coaching institutes: Live Classes, CBT Exam Engine, 50,000+ Question Bank, Automated Fees, and White-Labeled App.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F7F2",
+  "theme_color": "#14281B",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
