@@ -1,5 +1,6 @@
 import React from 'react';
-import { Sparkles, Phone, Mail, MapPin, MessageCircle, ArrowUpRight } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, ArrowUpRight } from 'lucide-react';
+import tutolinkLogo from '../assets/tutolink-full-logo.png';
 
 export default function Footer({ onOpenDemoModal }) {
   const whatsappUrl = "https://wa.me/917052422066?text=" + encodeURIComponent("Hi TutoLink Team, I want to book a free live demo for my coaching institute!");
@@ -12,16 +13,13 @@ export default function Footer({ onOpenDemoModal }) {
           
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#7CA45E] to-[#7493DB] p-0.5">
-                <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
-                  <Sparkles className="w-4 h-4 text-[#7CA45E]" />
-                </div>
-              </div>
-              <span className="text-xl font-black text-[#14281B] tracking-tight font-heading">
-                Tuto<span className="text-gradient-primary">Link</span>
-              </span>
-            </div>
+            <a href="#" className="inline-block">
+              <img 
+                src={tutolinkLogo} 
+                alt="TutoLink - Connect to grow better" 
+                className="h-10 sm:h-12 w-auto object-contain"
+              />
+            </a>
 
             <p className="text-[#5F7A67] leading-relaxed max-w-sm font-medium text-xs sm:text-xs">
               TutoLink is India's premier multi-tenant coaching institute OS. Empowers educators to stream live classes, conduct CBT tests, generate DPPs, manage parent transparency, and acquire new student leads.
