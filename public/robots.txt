@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 
-Sitemap: https://tutolink.in/sitemap.xml
+Sitemap: https://www.tutolink.in/sitemap.xml
