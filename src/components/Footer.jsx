@@ -26,13 +26,20 @@ export default function Footer({ onOpenDemoModal }) {
             </p>
 
             <div className="flex items-center gap-3 pt-2">
-              <a href="tel:+917052422066" className="p-2.5 rounded-xl bg-[#EBF5E4] border border-[#C6E0B5] text-[#3F572E] hover:bg-[#7CA45E] hover:text-white transition">
+              <a href="tel:+917052422066" className="p-2.5 rounded-xl bg-[#EBF5E4] border border-[#C6E0B5] text-[#3F572E] hover:bg-[#7CA45E] hover:text-white transition" title="Call Us">
                 <Phone className="w-4 h-4" />
               </a>
-              <a href={whatsappUrl} target="_blank" rel="noreferrer" className="p-2.5 rounded-xl bg-[#EAF5E1] border border-[#C6E0B5] text-[#388E3C] hover:bg-[#388E3C] hover:text-white transition">
+              <a href={whatsappUrl} target="_blank" rel="noreferrer" className="p-2.5 rounded-xl bg-[#EAF5E1] border border-[#C6E0B5] text-[#388E3C] hover:bg-[#388E3C] hover:text-white transition" title="WhatsApp Us">
                 <MessageCircle className="w-4 h-4" />
               </a>
-              <a href="mailto:geniusattechie@gmail.com" className="p-2.5 rounded-xl bg-[#E4EEFB] border border-[#C5D9F8] text-[#3B5298] hover:bg-[#7493DB] hover:text-white transition">
+              <a href="https://www.instagram.com/tutolinkofficial" target="_blank" rel="noreferrer" className="p-2.5 rounded-xl bg-[#FCE4EC] border border-[#F8BBD0] text-[#C2185B] hover:bg-[#E91E63] hover:text-white transition" title="Follow us on Instagram">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
+              </a>
+              <a href="mailto:geniusattechie@gmail.com" className="p-2.5 rounded-xl bg-[#E4EEFB] border border-[#C5D9F8] text-[#3B5298] hover:bg-[#7493DB] hover:text-white transition" title="Email Us">
                 <Mail className="w-4 h-4" />
               </a>
             </div>
