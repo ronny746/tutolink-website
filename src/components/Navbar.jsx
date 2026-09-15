@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, Phone, Menu, X, ArrowRight } from 'lucide-react';
-import tutolinkLogo from '../assets/tutolink-full-logo.png';
+import tutolinkLogo from '../assets/tutolink-full-logo.webp';
 
 export default function Navbar({ onOpenDemoModal }) {
   const [scrolled, setScrolled] = useState(false);
@@ -37,6 +37,8 @@ export default function Navbar({ onOpenDemoModal }) {
             <img 
               src={tutolinkLogo} 
               alt="TutoLink - Connect to grow better" 
+              width="192"
+              height="48"
               className="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
             />
           </a>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Phone, Mail, MapPin, MessageCircle, ArrowUpRight } from 'lucide-react';
-import tutolinkLogo from '../assets/tutolink-full-logo.png';
+import tutolinkLogo from '../assets/tutolink-full-logo.webp';
 
 export default function Footer({ onOpenDemoModal }) {
   const whatsappUrl = "https://wa.me/917052422066?text=" + encodeURIComponent("Hi TutoLink Team, I want to book a free live demo for my coaching institute!");
@@ -17,6 +17,8 @@ export default function Footer({ onOpenDemoModal }) {
               <img 
                 src={tutolinkLogo} 
                 alt="TutoLink - Connect to grow better" 
+                width="192"
+                height="48"
                 className="h-10 sm:h-12 w-auto object-contain"
               />
             </a>
