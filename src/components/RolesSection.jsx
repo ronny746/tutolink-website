@@ -36,28 +36,28 @@ export default function RolesSection({ onOpenDemoModal }) {
   ];
 
   return (
-    <section id="for-everyone" className="bg-[#173F39] text-white px-5 py-20 lg:px-8 lg:py-28 relative overflow-hidden">
+    <section id="for-everyone" className="bg-[#F0F6EB] text-[#2D3A30] px-5 py-20 lg:px-8 lg:py-28 relative overflow-hidden border-y border-[#E2EBDC]">
       
       {/* Background Lighting */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-[#7CA45E]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[#7B9D60]/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.8fr_1.2fr] items-center relative z-10">
         
         {/* Left Column Header */}
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#DDF269]">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#7B9D60]">
             Built Around Real Roles
           </p>
-          <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl font-heading leading-tight">
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl text-[#1F2922] font-heading leading-tight">
             A Clear Workspace For Every Person In The Learning Journey.
           </h2>
-          <p className="mt-5 max-w-md text-sm leading-7 text-emerald-50/80 font-medium">
+          <p className="mt-5 max-w-md text-sm leading-7 text-[#576659] font-medium">
             Access is securely scoped based on each person&apos;s role and institute. Teachers see their assigned batches, students access enrolled courses, and parents receive transparent progress updates.
           </p>
           <div className="mt-8">
             <button
               onClick={onOpenDemoModal}
-              className="rounded-full bg-[#DDF269] px-6 py-3.5 text-xs sm:text-sm font-extrabold text-[#173F39] hover:bg-white transition-colors shadow-lg flex items-center gap-2"
+              className="shimmer-btn rounded-full px-6 py-3.5 text-xs sm:text-sm font-extrabold text-white transition-colors shadow-lg flex items-center gap-2"
             >
               <span>Explore Role Permissions</span>
               <ArrowRight className="h-4 w-4" />
@@ -72,17 +72,17 @@ export default function RolesSection({ onOpenDemoModal }) {
               key={role} 
               className={`rounded-2xl border p-5 transition-all ${
                 highlight 
-                  ? "border-[#DDF269]/60 bg-[#28564D] shadow-xl scale-[1.02]" 
-                  : "border-white/10 bg-white/5 hover:bg-white/10"
+                  ? "border-[#7B9D60] bg-white shadow-lg scale-[1.02]" 
+                  : "border-[#E2EBDC] bg-white hover:border-[#7B9D60] shadow-2xs"
               }`}
             >
               <div className="flex items-center gap-2.5 mb-2">
-                <div className={`p-2 rounded-lg ${highlight ? "bg-[#DDF269] text-[#173F39]" : "bg-white/10 text-emerald-300"}`}>
+                <div className={`p-2 rounded-lg ${highlight ? "bg-[#7B9D60] text-white" : "bg-[#F0F6EB] text-[#7B9D60]"}`}>
                   <Icon className="h-4 w-4" />
                 </div>
-                <p className="text-base font-extrabold font-heading">{role}</p>
+                <p className="text-base font-extrabold text-[#1F2922] font-heading">{role}</p>
               </div>
-              <p className="mt-2 text-xs leading-6 text-emerald-50/75 font-medium">{copy}</p>
+              <p className="mt-2 text-xs leading-6 text-[#576659] font-medium">{copy}</p>
             </div>
           ))}
         </div>

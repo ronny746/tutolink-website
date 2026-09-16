@@ -1,56 +1,91 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, ArrowRight } from 'lucide-react';
-import { faqs } from '../data/landingData';
+import { ChevronDown, ArrowRight, HelpCircle } from 'lucide-react';
 
 export default function Faq({ onOpenDemoModal }) {
   const [openIndex, setOpenIndex] = useState(0);
+
+  const customFaqs = [
+    {
+      q: 'How quickly can we start using TutoLink?',
+      a: 'You can launch your institute portal in less than 10 minutes. Simply register, customize your institute name and logo, upload your batches, and invite your students.'
+    },
+    {
+      q: 'Can our institute use its own branding?',
+      a: 'Yes. TutoLink is built as a white-label technology platform. Your students see your institute logo, brand colors, custom subdomain (or domain), and institute announcements.'
+    },
+    {
+      q: 'Can we conduct live classes and store recorded lectures?',
+      a: 'Yes. You can host interactive live classes and automatically archive session recordings into organized batch playlists for 24/7 student revision.'
+    },
+    {
+      q: 'Can we create CBT mock tests and test series?',
+      a: 'Yes. TutoLink features a complete computer-based test (CBT) engine with full-screen exam mode, timers, subject sections, auto-grading, and instant rank analytics.'
+    },
+    {
+      q: 'Can we sell online courses and test series beyond our city?',
+      a: 'Yes. You can publish online courses, recorded masterclasses, and test series to attract and enroll outstation students beyond your physical classroom boundary.'
+    },
+    {
+      q: 'Can students practice from our institute question bank?',
+      a: 'Yes. You can upload or build your question bank and auto-generate Daily Practice Problems (DPPs), chapter exercises, or custom practice quizzes.'
+    },
+    {
+      q: 'Can students access our public educational content?',
+      a: 'Yes. You can publish free sample lectures, open demo tests, and study notes so prospective students can discover your teaching style before enrolling.'
+    },
+    {
+      q: 'Can we manage existing offline students alongside digital learners?',
+      a: 'Yes. TutoLink is designed for the modern hybrid coaching model, giving your offline students digital superpowers while allowing you to enroll online students.'
+    }
+  ];
 
   const toggleFaq = (index) => {
     setOpenIndex(openIndex === index ? -1 : index);
   };
 
   return (
-    <section id="faqs" className="py-14 bg-[#F4F7F2]">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="py-20 bg-[#F8FAF5] border-t border-[#E2EBDC]">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center mb-8">
-          <p className="text-xs font-bold text-[#7CA45E] uppercase tracking-wider mb-2">
-            Frequently Asked Questions
-          </p>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#14281B] tracking-tight font-heading">
-            Clear Answers To Your Questions
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#7B9D60]/15 text-[#2D3A30] text-xs font-semibold uppercase tracking-wider mb-3 border border-[#7B9D60]/30">
+            <HelpCircle className="w-3.5 h-3.5 text-[#7B9D60]" />
+            <span>Got Questions?</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1F2922] tracking-tight">
+            Clear Answers for Coaching Directors
           </h2>
         </div>
 
         {/* FAQ Accordion List */}
-        <div className="space-y-3">
-          {faqs.map((faq, idx) => {
+        <div className="space-y-3.5">
+          {customFaqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
 
             return (
               <div
                 key={idx}
-                className={`bg-white rounded-xl border transition-all overflow-hidden ${
-                  isOpen ? 'border-[#7CA45E] shadow-2xs' : 'border-[#D9E6D1]'
+                className={`bg-white rounded-2xl border transition-all overflow-hidden ${
+                  isOpen ? 'border-[#7B9D60] shadow-md' : 'border-[#E2EBDC]'
                 }`}
               >
                 <button
                   onClick={() => toggleFaq(idx)}
-                  className="w-full text-left p-4 flex items-center justify-between gap-3 focus:outline-none"
+                  className="w-full text-left p-5 flex items-center justify-between gap-4 focus:outline-none"
                 >
-                  <span className="text-xs sm:text-sm font-bold text-[#14281B] font-heading">
+                  <span className="text-sm sm:text-base font-bold text-[#1F2922]">
                     {faq.q}
                   </span>
-                  <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-transform flex-shrink-0 ${
-                    isOpen ? 'bg-[#7CA45E] text-white rotate-180' : 'bg-[#EBF5E4] text-[#4F6E39]'
+                  <div className={`w-7 h-7 rounded-full flex items-center justify-center transition-transform flex-shrink-0 ${
+                    isOpen ? 'bg-[#7B9D60] text-white rotate-180' : 'bg-[#F8FAF5] text-[#7B9D60]'
                   }`}>
-                    <ChevronDown className="w-3.5 h-3.5" />
+                    <ChevronDown className="w-4 h-4" />
                   </div>
                 </button>
 
                 {isOpen && (
-                  <div className="px-4 pb-4 pt-0 text-xs text-[#5F7A67] font-medium leading-relaxed bg-[#FAFCF9] border-t border-[#E8F0E3]">
+                  <div className="px-5 pb-5 pt-0 text-xs sm:text-sm text-[#2D3A30]/85 font-medium leading-relaxed border-t border-[#E2EBDC] bg-[#F8FAF5] pt-3">
                     {faq.a}
                   </div>
                 )}
@@ -60,15 +95,16 @@ export default function Faq({ onOpenDemoModal }) {
         </div>
 
         {/* Callout */}
-        <div className="mt-8 text-center bg-white p-4 rounded-xl border border-[#D9E6D1] flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs font-bold text-[#14281B]">
-            Have additional questions for your institute setup?
-          </p>
+        <div className="mt-10 text-center bg-white p-6 rounded-2xl border border-[#E2EBDC] flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+          <div className="text-left">
+            <h4 className="text-sm font-bold text-[#1F2922]">Have specific questions about your institute?</h4>
+            <p className="text-xs text-[#2D3A30]/75 mt-0.5">Our EdTech specialists can help you configure your portal.</p>
+          </div>
           <button
             onClick={onOpenDemoModal}
-            className="shimmer-btn text-white font-bold px-4 py-2 rounded-xl text-xs flex-shrink-0 inline-flex items-center gap-1.5"
+            className="px-5 py-2.5 rounded-xl bg-[#7B9D60] text-white font-bold text-xs hover:bg-[#6A8B50] transition-colors whitespace-nowrap shadow-xs inline-flex items-center gap-1.5"
           >
-            <span>Talk To EdTech Team</span>
+            <span>Speak with an Specialist</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>

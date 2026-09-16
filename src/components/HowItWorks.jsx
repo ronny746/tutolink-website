@@ -18,15 +18,15 @@ const iconMap = {
 
 export default function HowItWorks({ onOpenDemoModal }) {
   return (
-    <section id="how-it-works" className="py-14 bg-[#F4F7F2]">
+    <section id="how-it-works" className="py-14 bg-[#F8FAF5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <p className="text-xs font-bold text-[#7CA45E] uppercase tracking-wider mb-2">
+          <p className="text-xs font-bold text-[#7B9D60] uppercase tracking-wider mb-2">
             Simple 4-Step Onboarding
           </p>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#14281B] tracking-tight font-heading">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#1F2922] tracking-tight font-heading">
             Go Live In Under 10 Minutes
           </h2>
         </div>
@@ -39,21 +39,21 @@ export default function HowItWorks({ onOpenDemoModal }) {
             return (
               <div 
                 key={idx}
-                className="bg-white p-5 rounded-2xl border border-[#D9E6D1] shadow-2xs hover:border-[#7CA45E] transition"
+                className="bg-white p-5 rounded-2xl border border-[#E2EBDC] shadow-2xs hover:border-[#7B9D60] transition"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-2xl font-black text-[#7CA45E] font-heading">
+                  <span className="text-2xl font-black text-[#7B9D60] font-heading">
                     {item.step}
                   </span>
-                  <div className="w-9 h-9 rounded-xl bg-[#EBF5E4] flex items-center justify-center text-[#7CA45E]">
+                  <div className="w-9 h-9 rounded-xl bg-[#F0F6EB] flex items-center justify-center text-[#7B9D60]">
                     <IconComponent className="w-4 h-4" />
                   </div>
                 </div>
 
-                <h3 className="text-sm font-extrabold text-[#14281B] font-heading mb-1">
+                <h3 className="text-sm font-extrabold text-[#1F2922] font-heading mb-1">
                   {item.title}
                 </h3>
-                <p className="text-xs text-[#5F7A67] font-medium leading-relaxed">
+                <p className="text-xs text-[#576659] font-medium leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -62,14 +62,14 @@ export default function HowItWorks({ onOpenDemoModal }) {
         </div>
 
         {/* Callout */}
-        <div className="mt-8 bg-[#EBF5E4] p-4 sm:p-5 rounded-2xl border border-[#C6E0B5] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-8 bg-[#F0F6EB] p-4 sm:p-5 rounded-2xl border border-[#C8DCAE] flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <CheckCircle2 className="w-5 h-5 text-[#7CA45E] flex-shrink-0" />
+            <CheckCircle2 className="w-5 h-5 text-[#7B9D60] flex-shrink-0" />
             <div>
-              <p className="text-xs sm:text-sm font-bold text-[#14281B]">
+              <p className="text-xs sm:text-sm font-bold text-[#1F2922]">
                 Free Guided Data Migration Included
               </p>
-              <p className="text-[11px] text-[#5F7A67]">
+              <p className="text-[11px] text-[#576659]">
                 Our team imports your Excel rosters, question papers, and student records for free.
               </p>
             </div>

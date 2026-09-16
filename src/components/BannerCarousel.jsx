@@ -11,7 +11,7 @@ export default function BannerCarousel({ onOpenDemoModal }) {
       title: "Transform Your Coaching Into A Branded Digital Powerhouse",
       subtitle: "Launch your custom coaching app with live streaming, automated attendance, and multi-branch student management.",
       cta: "Book 15-Min Live Demo",
-      bgGradient: "from-[#14281B] via-[#2A4822] to-[#7CA45E]",
+      bgGradient: "from-[#526E3A] via-[#64844A] to-[#7B9D60]",
       image: "/assets/preview-dashboard.jpg",
       badge: "500+ Active Institutes"
     },
@@ -21,7 +21,7 @@ export default function BannerCarousel({ onOpenDemoModal }) {
       title: "50,000+ Tagged Questions & Auto-Graded CBT Tests",
       subtitle: "Schedule JEE, NEET & Board exams in 2 mins. Auto grading with All India Ranks & chapter-wise analytics.",
       cta: "Explore Question Bank",
-      bgGradient: "from-[#0F2027] via-[#203A43] to-[#2C5364]",
+      bgGradient: "from-[#4D6737] via-[#5F7F46] to-[#7B9D60]",
       image: "/assets/preview-test.jpg",
       badge: "99.4% Grading Accuracy"
     },
@@ -31,7 +31,7 @@ export default function BannerCarousel({ onOpenDemoModal }) {
       title: "Automated WhatsApp Fee Reminders & Parent App",
       subtitle: "Parent portal with attendance graphs, automated WhatsApp alerts, and instant online fee receipts.",
       cta: "See Parent App Demo",
-      bgGradient: "from-[#1A202C] via-[#2D3748] to-[#4A5568]",
+      bgGradient: "from-[#57753C] via-[#698C4C] to-[#7B9D60]",
       image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=80",
       badge: "95% On-Time Collection"
     },
@@ -41,7 +41,7 @@ export default function BannerCarousel({ onOpenDemoModal }) {
       title: "Acquire Prospective Students Organically Via Public Feed",
       subtitle: "Promote free mock test series and study notes to local students to generate verified admission leads.",
       cta: "Get Student Leads",
-      bgGradient: "from-[#111827] via-[#1F2937] to-[#374151]",
+      bgGradient: "from-[#486132] via-[#5B7B42] to-[#7B9D60]",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
       badge: "40+ Leads/Month Avg"
     }

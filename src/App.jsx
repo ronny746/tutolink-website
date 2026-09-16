@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import BannerCarousel from './components/BannerCarousel';
 import Hero from './components/Hero';
-import FeatureTabs from './components/FeatureTabs';
 import RolesSection from './components/RolesSection';
-import RoiCalculator from './components/RoiCalculator';
-import HowItWorks from './components/HowItWorks';
-import GrowthSection from './components/GrowthSection';
-import Comparison from './components/Comparison';
-import Testimonials from './components/Testimonials';
+import MoreThanClassroom from './components/MoreThanClassroom';
+import CompleteExperience from './components/CompleteExperience';
+import CbtAndGrowthTesting from './components/CbtAndGrowthTesting';
+import OnlineGrowthSection from './components/OnlineGrowthSection';
+import BrandingAndStudentExp from './components/BrandingAndStudentExp';
+import SetupAndComparison from './components/SetupAndComparison';
+import PricingSection from './components/PricingSection';
 import Faq from './components/Faq';
+import CtaSection from './components/CtaSection';
 import Footer from './components/Footer';
 import LeadFormModal from './components/LeadFormModal';
 import Toast from './components/Toast';
@@ -38,48 +40,54 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4F7F2] text-[#1D3728] selection:bg-[#7CA45E] selection:text-white font-sans antialiased overflow-x-hidden">
+    <div className="min-h-screen bg-[#F8FAF5] text-[#2D3A30] selection:bg-[#7B9D60] selection:text-white font-sans antialiased overflow-x-hidden">
       
-      {/* Navigation */}
+      {/* Top Header Navigation */}
       <Navbar onOpenDemoModal={handleOpenDemoModal} />
 
-      {/* Top Banner Carousel */}
+      {/* Top Announcement Ribbon */}
       <BannerCarousel onOpenDemoModal={handleOpenDemoModal} />
 
-      {/* Cleaned Hero & Quick Lead Capture Section */}
+      {/* Hero & Storyline */}
       <Hero 
         onOpenDemoModal={handleOpenDemoModal} 
         onSubmitLead={handleSubmitLead} 
       />
 
-      {/* Interactive Feature Tabs */}
-      <FeatureTabs onOpenDemoModal={handleOpenDemoModal} />
+      {/* Section 1: "More Than a Classroom." Strategic Journey */}
+      <MoreThanClassroom onOpenDemoModal={handleOpenDemoModal} />
 
-      {/* Role-Based Workspaces Section */}
+      {/* Section 2: 5 Workspace Roles (Admin, Superadmin, Teacher, Student, Parent) */}
       <RolesSection onOpenDemoModal={handleOpenDemoModal} />
 
-      {/* 4-Step Onboarding Workflow */}
-      <HowItWorks onOpenDemoModal={handleOpenDemoModal} />
+      {/* Section 3: "Turn Your Coaching Into a Complete Learning Experience." (6 Categories) */}
+      <CompleteExperience onOpenDemoModal={handleOpenDemoModal} />
 
-      {/* ROI & Savings Calculator */}
-      <RoiCalculator onOpenDemoModal={handleOpenDemoModal} />
+      {/* Section 4: CBT Exam Prep & Live Scholarship Growth Tests */}
+      <CbtAndGrowthTesting onOpenDemoModal={handleOpenDemoModal} />
 
-      {/* Organic Growth & Admissions Section */}
-      <GrowthSection onOpenDemoModal={handleOpenDemoModal} />
+      {/* Section 5: Online Course Sales, Question Bank Practice, & Public Content */}
+      <OnlineGrowthSection onOpenDemoModal={handleOpenDemoModal} />
 
-      {/* Comparison Table */}
-      <Comparison onOpenDemoModal={handleOpenDemoModal} />
+      {/* Section 6: Institute White-Label Branding & Unified Student Experience */}
+      <BrandingAndStudentExp onOpenDemoModal={handleOpenDemoModal} />
 
-      {/* Social Proof & Testimonials */}
-      <Testimonials onOpenDemoModal={handleOpenDemoModal} />
+      {/* Section 7: 10-Minute Setup & Comparison */}
+      <SetupAndComparison onOpenDemoModal={handleOpenDemoModal} />
 
-      {/* FAQ Accordion */}
+      {/* Section 8: Transparent Pricing */}
+      <PricingSection onOpenDemoModal={handleOpenDemoModal} />
+
+      {/* Section 9: FAQ Accordion */}
       <Faq onOpenDemoModal={handleOpenDemoModal} />
+
+      {/* Section 10: Final Call to Action */}
+      <CtaSection onOpenDemoModal={handleOpenDemoModal} />
 
       {/* Footer */}
       <Footer onOpenDemoModal={handleOpenDemoModal} />
 
-      {/* Auto-opening Lead Generation Dialog Modal */}
+      {/* Lead Generation Dialog Modal */}
       <LeadFormModal
         isOpen={isDemoModalOpen}
         onClose={handleCloseDemoModal}

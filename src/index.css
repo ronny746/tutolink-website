@@ -6,49 +6,49 @@
     --font-heading: 'Plus Jakarta Sans', 'Nunito', -apple-system, sans-serif;
     --font-body: 'Nunito', 'Inter', -apple-system, sans-serif;
     
-    --bg-main: #F4F7F2;
+    --bg-main: #F8FAF5;
     --bg-card: #FFFFFF;
-    --bg-input: #FAFCF9;
-    --border-color: #D9E6D1;
-    --border-hover: #B8D4A8;
+    --bg-input: #FAFDF8;
+    --border-color: #E2EBDC;
+    --border-hover: #B5CCA5;
     
-    --text-main: #1D3728;
-    --text-muted: #4A6652;
-    --text-heading: #14281B;
+    --text-main: #2D3A30;
+    --text-muted: #576659;
+    --text-heading: #1F2922;
     
-    --primary-sage: #7CA45E;
-    --primary-sage-hover: #658A4A;
-    --primary-sage-light: #EBF5E4;
-    --primary-sage-border: #C6E0B5;
+    --primary-sage: #7B9D60;
+    --primary-sage-hover: #64844A;
+    --primary-sage-light: #F0F6EB;
+    --primary-sage-border: #C8DCAE;
     
-    --accent-blue: #7493DB;
-    --accent-blue-hover: #5F7FCF;
-    --accent-blue-light: #E4EEFB;
-    --accent-blue-border: #C5D9F8;
+    --secondary-sage: #7B9D60;
+    --secondary-sage-hover: #64844A;
+    --secondary-sage-light: #F4F8F0;
+    --secondary-sage-border: #E2EBDC;
   }
 
   html {
     scroll-behavior: smooth;
     font-family: var(--font-body);
-    background-color: #F4F7F2;
-    color: #1D3728;
+    background-color: #F8FAF5;
+    color: #2D3A30;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    color: #14281B;
+    color: #1F2922;
   }
 }
 
-/* new-tuto Organic Theme Styles */
+/* Organic Theme Styles */
 .bg-radial-gradient {
-  background: radial-gradient(circle at 50% 0%, rgba(124, 164, 94, 0.18) 0%, rgba(116, 147, 219, 0.12) 40%, rgba(244, 247, 242, 1) 80%);
+  background: radial-gradient(circle at 50% 0%, rgba(123, 157, 96, 0.14) 0%, rgba(123, 157, 96, 0.04) 50%, rgba(248, 250, 245, 1) 85%);
 }
 
 .glass-card {
   background: #FFFFFF;
-  border: 1px solid #D9E6D1;
-  box-shadow: 0 10px 28px rgba(116, 147, 91, 0.08), 0 2px 6px rgba(116, 147, 91, 0.04);
+  border: 1px solid #E2EBDC;
+  box-shadow: 0 10px 28px rgba(123, 157, 96, 0.06), 0 2px 6px rgba(123, 157, 96, 0.03);
 }
 
 .glass-card-hover {
@@ -57,60 +57,60 @@
 
 .glass-card-hover:hover {
   background: #FFFFFF;
-  border-color: #7CA45E;
+  border-color: #7B9D60;
   transform: translateY(-4px);
-  box-shadow: 0 16px 36px rgba(116, 147, 91, 0.15);
+  box-shadow: 0 16px 36px rgba(123, 157, 96, 0.12);
 }
 
 .glass-pill {
-  background: #EBF5E4;
-  border: 1px solid #C6E0B5;
-  color: #2D4220;
+  background: #F0F6EB;
+  border: 1px solid #C8DCAE;
+  color: #2D3A30;
 }
 
-/* Gradient Text matching new-tuto Sage Green + Blue with ultra-high contrast */
+/* Gradient Text matching Sage Green #7B9D60 */
 .text-gradient-primary {
-  background: linear-gradient(135deg, #2D4220 0%, #658A4A 40%, #3B5298 100%);
+  background: linear-gradient(135deg, #1F2922 0%, #7B9D60 60%, #64844A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-blue {
-  background: linear-gradient(135deg, #2A488E 0%, #4A69B8 100%);
+  background: linear-gradient(135deg, #1F2922 0%, #7B9D60 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-sage {
-  background: linear-gradient(135deg, #1E3316 0%, #4F6E39 100%);
+  background: linear-gradient(135deg, #2D3A30 0%, #7B9D60 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* Buttons in new-tuto theme */
+/* Buttons in #7B9D60 theme */
 .shimmer-btn {
-  background: linear-gradient(135deg, #7CA45E 0%, #658A4A 100%);
+  background: linear-gradient(135deg, #7B9D60 0%, #64844A 100%);
   color: #FFFFFF;
-  box-shadow: 0 8px 24px rgba(124, 164, 94, 0.35);
+  box-shadow: 0 8px 24px rgba(123, 157, 96, 0.3);
   transition: all 0.2s ease;
 }
 
 .shimmer-btn:hover {
-  background: linear-gradient(135deg, #658A4A 0%, #4F6E39 100%);
-  box-shadow: 0 12px 28px rgba(124, 164, 94, 0.45);
+  background: linear-gradient(135deg, #64844A 0%, #526E3A 100%);
+  box-shadow: 0 12px 28px rgba(123, 157, 96, 0.4);
   transform: translateY(-1px);
 }
 
 .btn-blue {
-  background: linear-gradient(135deg, #7493DB 0%, #5F7FCF 100%);
+  background: linear-gradient(135deg, #7B9D60 0%, #64844A 100%);
   color: #FFFFFF;
-  box-shadow: 0 8px 24px rgba(116, 147, 219, 0.35);
+  box-shadow: 0 8px 24px rgba(123, 157, 96, 0.3);
   transition: all 0.2s ease;
 }
 
 .btn-blue:hover {
-  background: linear-gradient(135deg, #5F7FCF 0%, #3B5298 100%);
-  box-shadow: 0 12px 28px rgba(116, 147, 219, 0.45);
+  background: linear-gradient(135deg, #64844A 0%, #526E3A 100%);
+  box-shadow: 0 12px 28px rgba(123, 157, 96, 0.4);
   transform: translateY(-1px);
 }
 
@@ -137,11 +137,11 @@
   animation: pulse-slow 4s ease-in-out infinite;
 }
 
-/* Range input customization with Sage Green thumb */
+/* Range input customization with #7B9D60 thumb */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
-  background: #D9E6D1;
+  background: #E2EBDC;
   border-radius: 8px;
   height: 8px;
 }
@@ -152,9 +152,9 @@ input[type="range"]::-webkit-slider-thumb {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #7CA45E;
+  background: #7B9D60;
   cursor: pointer;
-  box-shadow: 0 0 12px rgba(124, 164, 94, 0.5);
+  box-shadow: 0 0 12px rgba(123, 157, 96, 0.4);
   transition: transform 0.15s ease;
 }
 
@@ -167,12 +167,12 @@ input[type="range"]::-webkit-slider-thumb:hover {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F4F7F2;
+  background: #F8FAF5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: #C8DCAE;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: #7B9D60;
 }
