@@ -1,0 +1,26 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Aggressive Caching for Hashed Static Assets (JS, CSS)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# Media & Favicons Caching (Images, WebManifest, XML)
+/*.png
+  Cache-Control: public, max-age=2592000, must-revalidate
+
+/*.jpg
+  Cache-Control: public, max-age=2592000, must-revalidate
+
+/*.webp
+  Cache-Control: public, max-age=2592000, must-revalidate
+
+/*.svg
+  Cache-Control: public, max-age=2592000, must-revalidate
+
+/sitemap.xml
+  Cache-Control: public, max-age=86400, must-revalidate
