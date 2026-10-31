@@ -1,132 +1,194 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Phone, Menu, X, ArrowRight } from 'lucide-react';
-import tutolinkLogo from '../assets/tutolink-full-logo.jpg';
+import { Phone, Menu, X, ArrowRight, MessageCircle, Play, Sparkles } from 'lucide-react';
+import tutolinkLogo from '../assets/tutolink-full-logo.webp';
 
-export default function Navbar({ onOpenDemoModal }) {
+export default function Navbar({ activePage = 'home', onNavigate, onOpenDemoModal }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 15);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const navLinks = [
-    { name: "Workspaces", href: "#for-everyone" },
-    { name: "6 Core Pillars", href: "#features" },
-    { name: "Prepare for CBT Exams", href: "#cbt-exams" },
-    { name: "Course Store", href: "#growth" },
-    { name: "White-Label App", href: "#branding" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "FAQ", href: "#faq" },
+    { id: 'home', name: "Home" },
+    { id: 'features', name: "Platform Features" },
+    { id: 'demo', name: "Interactive Sandbox", isLive: true },
+    { id: 'about', name: "Why TutoLink" },
+    { id: 'pricing', name: "Pricing" },
+    { id: 'contact', name: "Contact" },
   ];
 
+  const handleNavClick = (pageId) => {
+    onNavigate(pageId);
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const whatsappUrl = "https://wa.me/917052422066?text=" + encodeURIComponent("Hi TutoLink Team, I want to book a live demo for my coaching institute.");
+
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 border-b ${
       scrolled 
-        ? 'bg-white/95 backdrop-blur-md border-b border-[#D2E2C4] py-2.5 shadow-[0_4px_20px_rgba(123,157,96,0.08)]' 
-        : 'bg-white/90 backdrop-blur-md border-b border-[#D2E2C4]/80 py-3 shadow-xs'
+        ? 'border-[#D9E8CA] bg-[#fdfff9]/95 backdrop-blur-md shadow-xs py-2.5' 
+        : 'border-[#D9E8CA]/80 bg-[#fdfff9]/90 backdrop-blur-md py-3.5'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-2">
-          
-          {/* Brand Logo */}
-          <a href="#" className="flex items-center group flex-shrink-0">
+      <div className="mx-auto flex h-[50px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        
+        {/* Brand Logo & Tag from new-tuto */}
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={() => handleNavClick('home')} 
+            className="flex items-center group flex-shrink-0 focus:outline-none"
+          >
             <img 
               src={tutolinkLogo} 
-              alt="TutoLink - Connect to grow better" 
-              className="h-10 sm:h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
+              alt="TutoLink" 
+              className="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-102"
             />
+          </button>
+          <span className="hidden sm:inline-flex items-center px-2 py-0.5 rounded-full bg-[#ECF4E2] text-[#638249] text-[10px] font-extrabold uppercase tracking-wider border border-[#C1DAB0]">
+            Coaching Platform
+          </span>
+        </div>
+
+        {/* Minimalist Nav Links from new-tuto */}
+        <nav className="hidden lg:flex items-center gap-7 text-xs font-bold text-slate-700">
+          {navLinks.map((link) => {
+            const isActive = activePage === link.id;
+            return (
+              <button
+                key={link.id}
+                onClick={() => handleNavClick(link.id)}
+                className={`transition-colors flex items-center gap-1.5 focus:outline-none ${
+                  isActive
+                    ? 'text-[#7B9D60] font-black'
+                    : 'hover:text-[#7B9D60] text-slate-700 font-bold'
+                }`}
+              >
+                {link.isLive && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                )}
+                <span>{link.name}</span>
+              </button>
+            );
+          })}
+        </nav>
+
+        {/* Clean Action Buttons */}
+        <div className="hidden sm:flex items-center gap-2.5">
+          <a
+            href="tel:+917052422066"
+            className="p-2 rounded-xl text-slate-600 hover:text-[#7B9D60] hover:bg-[#ECF4E2]/60 transition border border-[#D9E8CA] bg-white"
+            title="Call +91 70524 22066"
+          >
+            <Phone className="w-4 h-4 text-[#7B9D60]" />
           </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-7 bg-[#FAFDF8] border border-[#E2EBDC] px-6 py-2 rounded-full shadow-xs">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-xs xl:text-sm font-bold text-[#1F2922] hover:text-[#7B9D60] transition-colors duration-200 whitespace-nowrap"
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="p-2 rounded-xl text-[#25D366] hover:bg-[#EAF5E1] transition border border-[#D9E8CA] bg-white"
+            title="Chat on WhatsApp"
+          >
+            <MessageCircle className="w-4 h-4" />
+          </a>
 
-          {/* Call & Demo CTA Buttons */}
-          <div className="hidden sm:flex items-center gap-3">
-            <button
-              onClick={onOpenDemoModal}
-              className="text-xs xl:text-sm font-bold text-[#1F2922] hover:text-[#7B9D60] px-3.5 py-2 rounded-xl transition whitespace-nowrap"
-            >
-              Login
-            </button>
+          <button
+            onClick={() => handleNavClick('demo')}
+            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border ${
+              activePage === 'demo'
+                ? 'border-[#7B9D60] bg-[#ECF4E2] text-[#638249]'
+                : 'border-[#C1DAB0] bg-white text-[#28371B] hover:bg-[#ECF4E2]/50'
+            }`}
+          >
+            <Play className="w-3.5 h-3.5 text-[#7B9D60] fill-[#7B9D60]" />
+            <span>Test Drive</span>
+          </button>
 
-            <button
-              onClick={onOpenDemoModal}
-              className="shimmer-btn text-white font-extrabold text-xs sm:text-sm px-5 py-2.5 rounded-full flex items-center gap-1.5 hover:scale-105 active:scale-95 transition-all shadow-md whitespace-nowrap"
-            >
-              <span>Get Started Free</span>
-              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            </button>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="flex items-center gap-2 sm:hidden">
-            <button
-              onClick={onOpenDemoModal}
-              className="shimmer-btn text-white font-extrabold text-xs px-3.5 py-1.5 rounded-full flex items-center gap-1 shadow-sm"
-            >
-              <span>Demo</span>
-              <ArrowRight className="w-3 h-3" />
-            </button>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-[#1F2922] hover:bg-[#EBF4E3] focus:outline-none border border-[#D2E2C4]"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-
+          <button
+            onClick={onOpenDemoModal}
+            className="rounded-xl bg-[#7B9D60] px-4 sm:px-5 py-2.5 text-xs font-extrabold text-white shadow-md hover:bg-[#638249] hover:shadow-lg transition flex items-center gap-1.5"
+          >
+            <span>Book a Free Demo</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
         </div>
+
+        {/* Mobile menu trigger */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <button
+            onClick={() => handleNavClick('demo')}
+            className="px-3 py-1.5 rounded-xl bg-[#ECF4E2] text-[#638249] border border-[#C1DAB0] text-xs font-extrabold flex items-center gap-1"
+          >
+            <Play className="w-3 h-3 fill-[#638249]" />
+            <span>Demo</span>
+          </button>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 rounded-xl text-[#28371B] hover:bg-[#ECF4E2] focus:outline-none border border-[#D9E8CA]"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
+
       </div>
 
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-[#D2E2C4] px-4 pt-3 pb-6 mt-2 space-y-4 shadow-xl animate-fadeIn">
-          <div className="flex flex-col space-y-2.5">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-sm font-bold text-[#1F2922] hover:text-[#7B9D60] py-2 border-b border-[#D2E2C4]/60 flex items-center justify-between"
-              >
-                <span>{link.name}</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#576659]" />
-              </a>
-            ))}
+        <div className="lg:hidden bg-white border-b border-[#D9E8CA] px-5 pt-3 pb-6 mt-2 space-y-4 shadow-xl animate-fadeIn">
+          <div className="flex flex-col space-y-2">
+            {navLinks.map((link) => {
+              const isActive = activePage === link.id;
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => handleNavClick(link.id)}
+                  className={`text-left text-sm font-bold py-2.5 px-3.5 rounded-xl transition flex items-center justify-between ${
+                    isActive
+                      ? 'bg-[#ECF4E2] text-[#638249] font-black'
+                      : 'text-slate-700 hover:bg-[#fdfff9]'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    {link.isLive && <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />}
+                    <span>{link.name}</span>
+                  </div>
+                </button>
+              );
+            })}
           </div>
 
-          <div className="pt-2 flex flex-col gap-2.5">
+          <div className="pt-3 border-t border-[#D9E8CA] flex flex-col gap-2.5">
             <a
               href="tel:+917052422066"
-              className="flex items-center justify-center gap-2 text-xs font-bold text-[#7B9D60] bg-[#EBF4E3] border border-[#C4DAAF] py-2.5 rounded-xl"
+              className="w-full py-2.5 px-4 rounded-xl border border-[#D9E8CA] text-xs font-bold text-slate-700 flex items-center justify-center gap-2 bg-[#fdfff9]"
             >
-              <Phone className="w-4 h-4" />
-              <span>Call Us: +91 70524 22066</span>
+              <Phone className="w-4 h-4 text-[#7B9D60]" />
+              <span>Call: +91 70524 22066</span>
+            </a>
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="w-full py-2.5 px-4 rounded-xl bg-[#25D366] text-white text-xs font-extrabold flex items-center justify-center gap-2 shadow-xs"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>Chat on WhatsApp</span>
             </a>
 
             <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenDemoModal();
-              }}
-              className="w-full shimmer-btn text-white font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-2 text-xs"
+              onClick={() => { setMobileMenuOpen(false); onOpenDemoModal(); }}
+              className="w-full py-3 rounded-xl bg-[#7B9D60] hover:bg-[#638249] text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-md transition"
             >
-              <span>Book Free Live Demo</span>
+              <span>Book a Free Live Demo</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

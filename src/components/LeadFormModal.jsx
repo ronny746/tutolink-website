@@ -40,7 +40,7 @@ export default function LeadFormModal({ isOpen, onClose, onSubmitLead }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
       
-      <div className="relative w-full max-w-xl bg-white rounded-3xl border border-[#D2E2C4] shadow-2xl p-5 sm:p-8 max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-xl bg-white rounded-3xl border border-[#D9E8CA] shadow-2xl p-5 sm:p-8 max-h-[90vh] overflow-y-auto">
         
         {/* Close button */}
         <button
@@ -52,14 +52,14 @@ export default function LeadFormModal({ isOpen, onClose, onSubmitLead }) {
 
         {/* Header */}
         <div className="mb-5 sm:mb-6 pr-6">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF4E3] border border-[#C4DAAF] text-[11px] font-bold text-[#2C352E] mb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ECF4E2] border border-[#C1DAB0] text-[11px] font-bold text-[#638249] mb-2">
             <Sparkles className="w-3.5 h-3.5 text-[#7B9D60] flex-shrink-0" />
             <span>Free 15-Minute Live Guided Demo</span>
           </div>
-          <h3 className="text-xl sm:text-2xl font-black text-[#1F2922] font-heading">
+          <h3 className="text-xl sm:text-2xl font-black text-[#28371B] font-heading">
             Book Live Demo For Your Institute
           </h3>
-          <p className="text-xs text-[#576659] font-medium mt-1">
+          <p className="text-xs text-[#5A7446] font-medium mt-1">
             Our EdTech team will showcase how your institute can transform into a digital powerhouse.
           </p>
         </div>
@@ -69,7 +69,7 @@ export default function LeadFormModal({ isOpen, onClose, onSubmitLead }) {
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-bold text-[#1F2922] mb-1">
+              <label className="block text-xs font-bold text-[#28371B] mb-1">
                 Coaching Institute Name *
               </label>
               <div className="relative">
@@ -81,13 +81,13 @@ export default function LeadFormModal({ isOpen, onClose, onSubmitLead }) {
                   placeholder="e.g. Apex Science Classes"
                   value={formData.instituteName}
                   onChange={handleChange}
-                  className="w-full bg-[#F7FAF3] border border-[#D2E2C4] rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm text-[#2C352E] focus:outline-none focus:border-[#7B9D60]"
+                  className="w-full bg-[#FAFCF9] border border-[#D9E8CA] rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm text-[#28371B] focus:outline-none focus:border-[#7B9D60]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#1F2922] mb-1">
+              <label className="block text-xs font-bold text-[#28371B] mb-1">
                 Director / Owner Name
               </label>
               <div className="relative">
@@ -98,7 +98,7 @@ export default function LeadFormModal({ isOpen, onClose, onSubmitLead }) {
                   placeholder="Your Name"
                   value={formData.ownerName}
                   onChange={handleChange}
-                  className="w-full bg-[#F7FAF3] border border-[#D2E2C4] rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm text-[#2C352E] focus:outline-none focus:border-[#7B9D60]"
+                  className="w-full bg-[#FAFCF9] border border-[#D9E8CA] rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm text-[#28371B] focus:outline-none focus:border-[#7B9D60]"
                 />
               </div>
             </div>
@@ -106,7 +106,7 @@ export default function LeadFormModal({ isOpen, onClose, onSubmitLead }) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-bold text-[#1F2922] mb-1">
+              <label className="block text-xs font-bold text-[#28371B] mb-1">
                 WhatsApp Mobile Number *
               </label>
               <div className="relative">
@@ -118,13 +118,13 @@ export default function LeadFormModal({ isOpen, onClose, onSubmitLead }) {
                   placeholder="+91 70524 22066"
                   value={formData.mobile}
                   onChange={handleChange}
-                  className="w-full bg-[#F7FAF3] border border-[#D2E2C4] rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm text-[#2C352E] focus:outline-none focus:border-[#7B9D60]"
+                  className="w-full bg-[#FAFCF9] border border-[#D9E8CA] rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm text-[#28371B] focus:outline-none focus:border-[#7B9D60]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#1F2922] mb-1">
+              <label className="block text-xs font-bold text-[#28371B] mb-1">
                 City / Location
               </label>
               <div className="relative">
@@ -135,7 +135,7 @@ export default function LeadFormModal({ isOpen, onClose, onSubmitLead }) {
                   placeholder="e.g. Lucknow, Kota, Patna"
                   value={formData.city}
                   onChange={handleChange}
-                  className="w-full bg-[#F7FAF3] border border-[#D2E2C4] rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm text-[#2C352E] focus:outline-none focus:border-[#7B9D60]"
+                  className="w-full bg-[#FAFCF9] border border-[#D9E8CA] rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm text-[#28371B] focus:outline-none focus:border-[#7B9D60]"
                 />
               </div>
             </div>
@@ -143,14 +143,14 @@ export default function LeadFormModal({ isOpen, onClose, onSubmitLead }) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-bold text-[#1F2922] mb-1">
+              <label className="block text-xs font-bold text-[#28371B] mb-1">
                 Approx Student Capacity
               </label>
               <select
                 name="studentCount"
                 value={formData.studentCount}
                 onChange={handleChange}
-                className="w-full bg-[#F7FAF3] border border-[#D2E2C4] rounded-xl px-3 py-2.5 text-xs sm:text-sm text-[#2C352E] focus:outline-none focus:border-[#7B9D60]"
+                className="w-full bg-[#FAFCF9] border border-[#D9E8CA] rounded-xl px-3 py-2.5 text-xs sm:text-sm text-[#28371B] focus:outline-none focus:border-[#7B9D60]"
               >
                 <option value="Under 50">Under 50 Students</option>
                 <option value="50 - 200">50 - 200 Students</option>
@@ -161,14 +161,14 @@ export default function LeadFormModal({ isOpen, onClose, onSubmitLead }) {
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-[#1F2922] mb-1">
+              <label className="block text-xs font-bold text-[#28371B] mb-1">
                 Primary Target Exam
               </label>
               <select
                 name="targetExam"
                 value={formData.targetExam}
                 onChange={handleChange}
-                className="w-full bg-[#F7FAF3] border border-[#D2E2C4] rounded-xl px-3 py-2.5 text-xs sm:text-sm text-[#2C352E] focus:outline-none focus:border-[#7B9D60]"
+                className="w-full bg-[#FAFCF9] border border-[#D9E8CA] rounded-xl px-3 py-2.5 text-xs sm:text-sm text-[#28371B] focus:outline-none focus:border-[#7B9D60]"
               >
                 <option value="JEE / NEET">JEE Main / NEET Medical</option>
                 <option value="CBSE / Board 8-12">CBSE &amp; State Boards (8th-12th)</option>
@@ -179,7 +179,7 @@ export default function LeadFormModal({ isOpen, onClose, onSubmitLead }) {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-[#1F2922] mb-1">
+            <label className="block text-xs font-bold text-[#28371B] mb-1">
               Preferred Callback Time
             </label>
             <div className="relative">
@@ -188,7 +188,7 @@ export default function LeadFormModal({ isOpen, onClose, onSubmitLead }) {
                 name="preferredTime"
                 value={formData.preferredTime}
                 onChange={handleChange}
-                className="w-full bg-[#F7FAF3] border border-[#D2E2C4] rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm text-[#2C352E] focus:outline-none focus:border-[#7B9D60]"
+                className="w-full bg-[#FAFCF9] border border-[#D9E8CA] rounded-xl pl-9 pr-3 py-2.5 text-xs sm:text-sm text-[#28371B] focus:outline-none focus:border-[#7B9D60]"
               >
                 <option value="Morning (10 AM - 1 PM)">Morning (10 AM - 1 PM)</option>
                 <option value="Afternoon (1 PM - 5 PM)">Afternoon (1 PM - 5 PM)</option>
@@ -201,13 +201,13 @@ export default function LeadFormModal({ isOpen, onClose, onSubmitLead }) {
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full shimmer-btn text-white font-bold py-3.5 px-6 rounded-full shadow-lg flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] transition text-xs sm:text-sm"
+              className="w-full bg-[#7B9D60] hover:bg-[#638249] text-white font-bold py-3.5 px-6 rounded-full shadow-md hover:shadow-lg flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] transition text-xs sm:text-sm"
             >
               <span>Confirm Demo Booking &amp; Get Free Setup</span>
             </button>
           </div>
 
-          <div className="pt-2 flex items-center justify-center gap-4 text-[10px] sm:text-[11px] text-[#576659] font-medium flex-wrap">
+          <div className="pt-2 flex items-center justify-center gap-4 text-[10px] sm:text-[11px] text-[#5A7446] font-medium flex-wrap">
             <span className="flex items-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5 text-[#7B9D60]" />
               100% Data Confidential

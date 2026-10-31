@@ -1,131 +1,107 @@
 import React from 'react';
-import { Phone, Mail, MapPin, MessageCircle, ArrowUpRight } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, Play } from 'lucide-react';
 import tutolinkLogo from '../assets/tutolink-full-logo.webp';
 
-export default function Footer({ onOpenDemoModal }) {
+export default function Footer({ onNavigate, onOpenDemoModal }) {
   const whatsappUrl = "https://wa.me/917052422066?text=" + encodeURIComponent("Hi TutoLink Team, I want to book a free live demo for my coaching institute!");
 
+  const handleNav = (page) => {
+    if (onNavigate) onNavigate(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="bg-white border-t border-[#D9E6D1] text-[#5F7A67] text-xs pt-12 sm:pt-16 pb-28 sm:pb-24 relative overflow-hidden">
+    <footer className="bg-white border-t border-[#D9E8CA]/60 text-[#5A7446] text-xs pt-12 sm:pt-16 pb-28 sm:pb-24 relative overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 pb-10 sm:pb-12 border-b border-[#D9E6D1]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10 pb-10 sm:pb-12 border-b border-[#D9E8CA]/60">
           
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <a href="#" className="inline-block">
+            <button onClick={() => handleNav('home')} className="inline-block text-left">
               <img 
                 src={tutolinkLogo} 
                 alt="TutoLink - Connect to grow better" 
                 width="192"
                 height="48"
-                className="h-10 sm:h-12 w-auto object-contain"
+                className="h-10 sm:h-11 w-auto object-contain"
               />
-            </a>
+            </button>
 
-            <p className="text-[#5F7A67] leading-relaxed max-w-sm font-medium text-xs sm:text-xs">
-              TutoLink is India's premier multi-tenant coaching institute OS. Empowers educators to stream live classes, conduct CBT tests, generate DPPs, manage parent transparency, and acquire new student leads.
+            <p className="text-[#5A7446] leading-relaxed max-w-sm font-medium text-xs">
+              TutoLink is India's next-gen coaching institute OS. Empowers educators to stream in-house live classes, conduct NTA CBT tests, generate DPPs, automate WhatsApp fees, and scale with 0% commission.
             </p>
 
             <div className="flex items-center gap-3 pt-2">
-              <a href="tel:+917052422066" className="p-2.5 rounded-xl bg-[#EBF5E4] border border-[#C6E0B5] text-[#3F572E] hover:bg-[#7CA45E] hover:text-white transition" title="Call Us">
+              <a href="tel:+917052422066" className="p-2.5 rounded-xl bg-[#ECF4E2] border border-[#C1DAB0] text-[#638249] hover:bg-[#7B9D60] hover:text-white transition" title="Call Us">
                 <Phone className="w-4 h-4" />
               </a>
-              <a href={whatsappUrl} target="_blank" rel="noreferrer" className="p-2.5 rounded-xl bg-[#EAF5E1] border border-[#C6E0B5] text-[#388E3C] hover:bg-[#388E3C] hover:text-white transition" title="WhatsApp Us">
+              <a href={whatsappUrl} target="_blank" rel="noreferrer" className="p-2.5 rounded-xl bg-[#ECF4E2] border border-[#C1DAB0] text-[#25D366] hover:bg-[#25D366] hover:text-white transition" title="WhatsApp Us">
                 <MessageCircle className="w-4 h-4" />
               </a>
-              <a href="https://www.instagram.com/tutolinkofficial" target="_blank" rel="noreferrer" className="p-2.5 rounded-xl bg-[#FCE4EC] border border-[#F8BBD0] text-[#C2185B] hover:bg-[#E91E63] hover:text-white transition" title="Follow us on Instagram">
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-                </svg>
-              </a>
-              <a href="mailto:geniusattechie@gmail.com" className="p-2.5 rounded-xl bg-[#E4EEFB] border border-[#C5D9F8] text-[#3B5298] hover:bg-[#7493DB] hover:text-white transition" title="Email Us">
+              <a href="mailto:geniusattechie@gmail.com" className="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-700 hover:bg-blue-600 hover:text-white transition" title="Email Us">
                 <Mail className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Pages */}
           <div>
-            <h4 className="text-sm font-bold text-[#14281B] mb-3 sm:mb-4 font-heading">Product Features</h4>
-            <ul className="space-y-2.5 font-semibold">
-              <li><a href="#features" className="hover:text-[#7CA45E] transition">Institute Branding</a></li>
-              <li><a href="#features" className="hover:text-[#7CA45E] transition">Interactive Live Classes</a></li>
-              <li><a href="#features" className="hover:text-[#7CA45E] transition">Online Question Bank</a></li>
-              <li><a href="#features" className="hover:text-[#7CA45E] transition">DPP &amp; Exam Engine</a></li>
-              <li><a href="#features" className="hover:text-[#7CA45E] transition">Parent Portal &amp; Fees</a></li>
+            <h4 className="text-sm font-bold text-[#28371B] mb-3 sm:mb-4 font-heading">Platform Pages</h4>
+            <ul className="space-y-2.5 font-medium">
+              <li><button onClick={() => handleNav('home')} className="hover:text-[#7B9D60] transition">Home</button></li>
+              <li><button onClick={() => handleNav('features')} className="hover:text-[#7B9D60] transition">Features &amp; Engines</button></li>
+              <li><button onClick={() => handleNav('demo')} className="hover:text-[#7B9D60] transition flex items-center gap-1.5"><Play className="w-3 h-3 text-[#7B9D60] fill-[#7B9D60]" /> Live Demo Sandbox</button></li>
+              <li><button onClick={() => handleNav('about')} className="hover:text-[#7B9D60] transition">Why TutoLink (Our Story)</button></li>
+              <li><button onClick={() => handleNav('pricing')} className="hover:text-[#7B9D60] transition">Transparent Pricing</button></li>
+              <li><button onClick={() => handleNav('contact')} className="hover:text-[#7B9D60] transition">Contact &amp; Support</button></li>
             </ul>
           </div>
 
           {/* Solutions */}
           <div>
-            <h4 className="text-sm font-bold text-[#14281B] mb-3 sm:mb-4 font-heading">Exam Target Solutions</h4>
-            <ul className="space-y-2.5 font-semibold">
-              <li><a href="#hero" className="hover:text-[#7CA45E] transition">JEE Main &amp; Advanced</a></li>
-              <li><a href="#hero" className="hover:text-[#7CA45E] transition">NEET Medical Prep</a></li>
-              <li><a href="#hero" className="hover:text-[#7CA45E] transition">CBSE Class 8 - 12</a></li>
-              <li><a href="#hero" className="hover:text-[#7CA45E] transition">Foundation Courses</a></li>
-              <li><a href="#hero" className="hover:text-[#7CA45E] transition">State Board Exams</a></li>
+            <h4 className="text-sm font-bold text-[#28371B] mb-3 sm:mb-4 font-heading">Exam Specializations</h4>
+            <ul className="space-y-2.5 font-medium">
+              <li><button onClick={() => handleNav('features')} className="hover:text-[#7B9D60] transition">JEE Main &amp; Advanced</button></li>
+              <li><button onClick={() => handleNav('features')} className="hover:text-[#7B9D60] transition">NEET Medical Prep</button></li>
+              <li><button onClick={() => handleNav('features')} className="hover:text-[#7B9D60] transition">CBSE Class 8 - 12</button></li>
+              <li><button onClick={() => handleNav('features')} className="hover:text-[#7B9D60] transition">Foundation Courses</button></li>
+              <li><button onClick={() => handleNav('features')} className="hover:text-[#7B9D60] transition">Commerce &amp; CA Foundation</button></li>
             </ul>
           </div>
 
           {/* Contact Details */}
           <div>
-            <h4 className="text-sm font-bold text-[#14281B] mb-3 sm:mb-4 font-heading">Onboarding Support</h4>
+            <h4 className="text-sm font-bold text-[#28371B] mb-3 sm:mb-4 font-heading">Onboarding Support</h4>
             <ul className="space-y-3 font-medium">
               <li className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-[#7CA45E] mt-0.5 flex-shrink-0" />
+                <MapPin className="w-4 h-4 text-[#7B9D60] mt-0.5 flex-shrink-0" />
                 <span>EdTech Hub, Gomti Nagar, Lucknow, Uttar Pradesh</span>
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#7CA45E] flex-shrink-0" />
-                <a href="tel:+917052422066" className="hover:text-[#14281B] font-bold">+91 70524 22066</a>
+                <Phone className="w-4 h-4 text-[#7B9D60] flex-shrink-0" />
+                <a href="tel:+917052422066" className="hover:underline font-bold text-[#28371B]">+91 70524 22066</a>
               </li>
               <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#7493DB] flex-shrink-0" />
-                <a href="mailto:geniusattechie@gmail.com" className="hover:text-[#14281B] font-bold">geniusattechie@gmail.com</a>
+                <MessageCircle className="w-4 h-4 text-[#25D366] flex-shrink-0" />
+                <a href={whatsappUrl} target="_blank" rel="noreferrer" className="hover:underline font-bold text-[#25D366]">Chat on WhatsApp</a>
               </li>
             </ul>
           </div>
 
         </div>
 
-        {/* Bottom copyright */}
-        <div className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#5F7A67] font-semibold text-center sm:text-left">
-          <p>© {new Date().getFullYear()} TutoLink Technologies Ltd. All rights reserved.</p>
-          <div className="flex items-center gap-4 sm:gap-6">
-            <a href="#" className="hover:text-[#14281B]">Privacy Policy</a>
-            <a href="#" className="hover:text-[#14281B]">Terms of Service</a>
-            <a href="#" className="hover:text-[#14281B]">Security Isolation</a>
+        {/* Bottom Rights */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[#5A7446] font-medium text-[11px]">
+          <p>© {new Date().getFullYear()} TutoLink Technologies Ltd. All Rights Reserved. Built for Indian Coaching Institutes.</p>
+          <div className="flex items-center gap-4">
+            <span>0% Commission Guarantee</span>
+            <span>•</span>
+            <span>100% Data Isolation</span>
           </div>
         </div>
 
       </div>
-
-      {/* Floating Sticky Quick Action Bar */}
-      <div className="fixed bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 z-40 bg-white/95 backdrop-blur-md px-3.5 sm:px-4 py-2 rounded-full border border-[#D9E6D1] shadow-2xl flex items-center gap-2 sm:gap-3 animate-fadeIn max-w-[95vw] sm:max-w-none">
-        <a
-          href={whatsappUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#EAF5E1] text-[#388E3C] border border-[#C6E0B5] hover:bg-[#388E3C] hover:text-white transition text-[11px] sm:text-xs font-bold whitespace-nowrap"
-        >
-          <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
-          <span className="hidden xs:inline">WhatsApp Support</span>
-          <span className="xs:hidden">WhatsApp</span>
-        </a>
-
-        <button
-          onClick={onOpenDemoModal}
-          className="shimmer-btn text-white font-bold px-4 sm:px-5 py-1.5 rounded-full text-[11px] sm:text-xs flex items-center gap-1 shadow-md whitespace-nowrap"
-        >
-          <span>Book Free Live Demo</span>
-          <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
-        </button>
-      </div>
-
     </footer>
   );
 }

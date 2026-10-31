@@ -1,26 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import BannerCarousel from './components/BannerCarousel';
-import Hero from './components/Hero';
-import RolesSection from './components/RolesSection';
-import MoreThanClassroom from './components/MoreThanClassroom';
-import CompleteExperience from './components/CompleteExperience';
-import CbtAndGrowthTesting from './components/CbtAndGrowthTesting';
-import OnlineGrowthSection from './components/OnlineGrowthSection';
-import BrandingAndStudentExp from './components/BrandingAndStudentExp';
-import SetupAndComparison from './components/SetupAndComparison';
-import PricingSection from './components/PricingSection';
-import Faq from './components/Faq';
-import CtaSection from './components/CtaSection';
 import Footer from './components/Footer';
+import FloatingActionWidget from './components/FloatingActionWidget';
 import LeadFormModal from './components/LeadFormModal';
 import Toast from './components/Toast';
 import { submitLeadToGoogleSheet } from './utils/leadCapture';
 
+// Multi-Page Views
+import HomePage from './pages/HomePage';
+import FeaturesPage from './pages/FeaturesPage';
+import DemoPage from './pages/DemoPage';
+import AboutPage from './pages/AboutPage';
+import PricingPage from './pages/PricingPage';
+import ContactPage from './pages/ContactPage';
+
 export default function App() {
-  // Open lead form modal automatically as soon as website loads
-  const [isDemoModalOpen, setIsDemoModalOpen] = useState(true);
+  // Read initial page from hash or default to 'home'
+  const getInitialPage = () => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '').trim();
+      const validPages = ['home', 'features', 'demo', 'about', 'pricing', 'contact'];
+      if (validPages.includes(hash)) return hash;
+    }
+    return 'home';
+  };
+
+  const [activePage, setActivePage] = useState(getInitialPage);
+  const [isDemoModalOpen, setIsDemoModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+
+  // Synchronize hash with browser back/forward buttons
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '').trim();
+      const validPages = ['home', 'features', 'demo', 'about', 'pricing', 'contact'];
+      if (validPages.includes(hash)) {
+        setActivePage(hash);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const navigateTo = (page) => {
+    setActivePage(page);
+    window.location.hash = page;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleOpenDemoModal = () => {
     setIsDemoModalOpen(true);
@@ -33,59 +60,77 @@ export default function App() {
   const handleSubmitLead = async (leadData) => {
     console.log("Lead captured:", leadData);
     await submitLeadToGoogleSheet(leadData);
-    setToastMessage(`Thank you ${leadData.ownerName || leadData.instituteName}! Our EdTech team will contact you shortly at ${leadData.mobile}.`);
+    setToastMessage(`Thank you ${leadData.ownerName || leadData.instituteName}! Our Senior EdTech Advisor will connect with you at ${leadData.mobile}.`);
     setTimeout(() => {
       setToastMessage('');
     }, 6000);
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAF5] text-[#2D3A30] selection:bg-[#7B9D60] selection:text-white font-sans antialiased overflow-x-hidden">
+    <div className="min-h-screen bg-[#fdfff9] text-[#28371B] selection:bg-[#7B9D60] selection:text-white font-sans antialiased overflow-x-hidden flex flex-col justify-between">
       
-      {/* Top Header Navigation */}
-      <Navbar onOpenDemoModal={handleOpenDemoModal} />
-
-      {/* Top Announcement Ribbon */}
-      <BannerCarousel onOpenDemoModal={handleOpenDemoModal} />
-
-      {/* Hero & Storyline */}
-      <Hero 
+      {/* Top Header Navigation with Multi-Page Tabs */}
+      <Navbar 
+        activePage={activePage} 
+        onNavigate={navigateTo} 
         onOpenDemoModal={handleOpenDemoModal} 
-        onSubmitLead={handleSubmitLead} 
       />
 
-      {/* Section 1: "More Than a Classroom." Strategic Journey */}
-      <MoreThanClassroom onOpenDemoModal={handleOpenDemoModal} />
+      {/* Main Multi-Page View Container */}
+      <main className="flex-1">
+        {activePage === 'home' && (
+          <HomePage 
+            onNavigate={navigateTo} 
+            onOpenDemoModal={handleOpenDemoModal} 
+            onSubmitLead={handleSubmitLead} 
+          />
+        )}
 
-      {/* Section 2: 5 Workspace Roles (Admin, Superadmin, Teacher, Student, Parent) */}
-      <RolesSection onOpenDemoModal={handleOpenDemoModal} />
+        {activePage === 'features' && (
+          <FeaturesPage 
+            onNavigate={navigateTo} 
+            onOpenDemoModal={handleOpenDemoModal} 
+          />
+        )}
 
-      {/* Section 3: "Turn Your Coaching Into a Complete Learning Experience." (6 Categories) */}
-      <CompleteExperience onOpenDemoModal={handleOpenDemoModal} />
+        {activePage === 'demo' && (
+          <DemoPage 
+            onNavigate={navigateTo} 
+            onOpenDemoModal={handleOpenDemoModal} 
+          />
+        )}
 
-      {/* Section 4: CBT Exam Prep & Live Scholarship Growth Tests */}
-      <CbtAndGrowthTesting onOpenDemoModal={handleOpenDemoModal} />
+        {activePage === 'about' && (
+          <AboutPage 
+            onNavigate={navigateTo} 
+            onOpenDemoModal={handleOpenDemoModal} 
+          />
+        )}
 
-      {/* Section 5: Online Course Sales, Question Bank Practice, & Public Content */}
-      <OnlineGrowthSection onOpenDemoModal={handleOpenDemoModal} />
+        {activePage === 'pricing' && (
+          <PricingPage 
+            onNavigate={navigateTo} 
+            onOpenDemoModal={handleOpenDemoModal} 
+          />
+        )}
 
-      {/* Section 6: Institute White-Label Branding & Unified Student Experience */}
-      <BrandingAndStudentExp onOpenDemoModal={handleOpenDemoModal} />
+        {activePage === 'contact' && (
+          <ContactPage 
+            onNavigate={navigateTo} 
+            onOpenDemoModal={handleOpenDemoModal} 
+            onSubmitLead={handleSubmitLead} 
+          />
+        )}
+      </main>
 
-      {/* Section 7: 10-Minute Setup & Comparison */}
-      <SetupAndComparison onOpenDemoModal={handleOpenDemoModal} />
+      {/* Enterprise Footer with Cross-Page Links */}
+      <Footer 
+        onNavigate={navigateTo} 
+        onOpenDemoModal={handleOpenDemoModal} 
+      />
 
-      {/* Section 8: Transparent Pricing */}
-      <PricingSection onOpenDemoModal={handleOpenDemoModal} />
-
-      {/* Section 9: FAQ Accordion */}
-      <Faq onOpenDemoModal={handleOpenDemoModal} />
-
-      {/* Section 10: Final Call to Action */}
-      <CtaSection onOpenDemoModal={handleOpenDemoModal} />
-
-      {/* Footer */}
-      <Footer onOpenDemoModal={handleOpenDemoModal} />
+      {/* Persistent Floating WhatsApp & Demo Action Widget */}
+      <FloatingActionWidget onOpenDemoModal={handleOpenDemoModal} />
 
       {/* Lead Generation Dialog Modal */}
       <LeadFormModal

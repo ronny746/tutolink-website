@@ -4,9 +4,9 @@ export const heroData = {
   mainTitleText2: "With Your Branded Operating System",
   subTitle: "Streamline HD Live Streaming, Automated CBT Exams, AI-Powered Question Bank, Instant Doubt Solving, Parent Transparency Portal & Organic Lead Acquisition — Built Exclusively Under Your Institute's Logo & Domain.",
   stats: [
-    { label: "Partner Institutes", value: "500+" },
-    { label: "Active Students", value: "150,000+" },
-    { label: "Exams Conducted", value: "2.5M+" },
+    { label: "Commission Cut", value: "0% Commission" },
+    { label: "Proprietary Engine", value: "100% In-House" },
+    { label: "Response Window", value: "12 Working Hours" },
     { label: "Average Setup Time", value: "< 10 Mins" }
   ]
 };

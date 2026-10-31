@@ -1,101 +1,168 @@
 import React from 'react';
 import { 
-  Video, 
-  BookOpen, 
-  FileCheck2, 
-  MessageSquare, 
-  TrendingUp, 
-  Bell, 
+  AlertTriangle, 
   CheckCircle2, 
-  ArrowRight 
+  ArrowRight, 
+  TrendingDown, 
+  TrendingUp, 
+  FileSpreadsheet, 
+  Smartphone, 
+  ShieldAlert, 
+  Zap, 
+  Sparkles,
+  Users
 } from 'lucide-react';
 
 export default function ProblemSection({ onOpenDemoModal }) {
-  const elements = [
-    { title: "Classes", desc: "Live stream & archived recorded lectures", icon: Video },
-    { title: "Study Material", desc: "Digital notes, DPPs & PDF ebooks", icon: BookOpen },
-    { title: "Practice", desc: "Custom topic DPPs & question bank", icon: FileCheck2 },
-    { title: "Tests", desc: "CBT exam engine with All India Ranks", icon: TrendingUp },
-    { title: "Doubts", desc: "24/7 student-teacher photo & audio desk", icon: MessageSquare },
-    { title: "Communication", desc: "Automated WhatsApp announcements & fees", icon: Bell },
-    { title: "Progress", desc: "Parent visibility trend graphs & analytics", icon: CheckCircle2 },
+  const leaks = [
+    {
+      num: "01",
+      title: "The Digital Deficit & Student Churn",
+      problem: "Students study offline with you, but compare your coaching with multi-million dollar EdTech apps. Without a 24/7 mobile app, recorded lectures, and digital DPPs, students secretly migrate to online platforms.",
+      solution: "Your Own Branded App in 10 Mins",
+      solutionDesc: "Give students their official institute mobile & web app with live classes, cloud recorded lectures, daily DPP practice streaks, and instant doubt chat under your coaching's name and logo.",
+      impact: "100% Student Retention After Class"
+    },
+    {
+      num: "02",
+      title: "The 25% Fee Delay & Cash Flow Drain",
+      problem: "Tracking installment registers manually, losing paper cash receipts, and having teachers or front-desk staff make uncomfortable phone calls to parents to chase delayed fee dues.",
+      solution: "Automated WhatsApp Fee Collection",
+      solutionDesc: "Automated polite WhatsApp reminders sent directly to parents with 1-click UPI & Card payment links. Instant digital fee receipts generated and synced to your institute accounting ledger.",
+      impact: "96.4% On-Time Fee Recovery"
+    },
+    {
+      num: "03",
+      title: "Manual Test Typing & OMR Fatigue",
+      problem: "Faculty spending 12-15 hours every week typing questions into MS Word, paying local Xerox shops for paper prints, and taking 3-4 days to grade OMR sheets manually.",
+      solution: "50,000+ Question Bank & Auto CBT",
+      solutionDesc: "Create NTA-pattern JEE, NEET, or CBSE tests in under 2 minutes. Auto-graded in seconds with instant All India Ranks, percentiles, and chapter-wise weakness analytics.",
+      impact: "Saves 14+ Faculty Hours / Week"
+    },
+    {
+      num: "04",
+      title: "The SaaS Revenue-Cut & Lock-In Trap",
+      problem: "Generic EdTech software companies charging ₹40,000 - ₹1.5 Lakhs upfront, taking 10-15% cuts of your online course fees, and refusing to give back your student database if you leave.",
+      solution: "0% Commission & Total Data Freedom",
+      solutionDesc: "Keep 100% of your student fees. TutoLink operates on honest, flat SaaS pricing with zero revenue-sharing cuts and 1-click Excel export of your full database anytime.",
+      impact: "Zero Commission • 100% Data Ownership"
+    }
   ];
 
   return (
-    <section id="problem" className="py-16 sm:py-24 bg-[#F8FAF5] relative border-t border-[#E2EBDC]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="why-tutolink" className="py-20 md:py-28 bg-[#F8FAF5] relative border-b border-[#E2EBDC]">
+      
+      {/* Background Decor */}
+      <div className="absolute top-1/2 left-0 w-80 h-80 bg-[#7B9D60]/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Marketing Hook Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="text-xs font-extrabold uppercase tracking-widest text-[#7B9D60] bg-[#F0F6EB] px-3.5 py-1.5 rounded-full border border-[#C8DCAE]">
-            Changing Student Dynamics
-          </span>
-          
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#1F2922] font-heading tracking-tight mt-4 leading-tight">
-            The way students learn has changed. <br className="hidden sm:inline" />
-            <span className="text-[#7B9D60]">Has your coaching?</span>
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-50 text-red-700 text-xs font-black uppercase tracking-wider border border-red-200">
+            <AlertTriangle className="w-3.5 h-3.5 text-red-600" />
+            <span>The Silent Crisis in Offline Coaching</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#1F2922] font-heading tracking-tight leading-tight">
+            The 4 Fatal Leaks Costing Coaching Institutes <br className="hidden sm:inline" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-amber-600 to-[#7B9D60]">
+              Lakhs in Lost Revenue Every Year.
+            </span>
           </h2>
 
-          <p className="mt-4 text-sm sm:text-base text-[#576659] font-medium leading-relaxed max-w-2xl mx-auto">
-            Your classroom is still important. But learning doesn't stop when the class ends. Students today expect continuous access to their batch notes, tests, doubt solving, and practice from their phones.
+          <p className="text-base sm:text-lg text-[#576659] font-medium leading-relaxed">
+            Your teaching is exceptional. But running your institute on fragmented WhatsApp groups, paper registers, and Xerox tests creates friction that bleeds students and cash flow.
           </p>
         </div>
 
-        {/* Visual Stack: Classroom Elements Connecting into TutoLink */}
-        <div className="bg-white p-6 sm:p-10 rounded-3xl border border-[#E2EBDC] shadow-xl">
-          <div className="text-center max-w-xl mx-auto mb-8">
-            <h3 className="text-lg sm:text-2xl font-bold text-[#1F2922] font-heading">
-              Everything happens after the lecture ends:
+        {/* 4 Leaks Grid: Problem vs Solution Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {leaks.map((leak, idx) => (
+            <div 
+              key={idx}
+              className="bg-white rounded-3xl border border-[#E2EBDC] hover:border-[#7B9D60] p-6 sm:p-8 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group"
+            >
+              <div className="space-y-6">
+                
+                {/* Header Tag */}
+                <div className="flex items-center justify-between pb-4 border-b border-[#E2EBDC]">
+                  <span className="text-xs font-black text-white bg-[#1F2922] px-3 py-1 rounded-lg">
+                    LEAK #{leak.num}
+                  </span>
+                  <span className="text-xs font-extrabold text-[#7B9D60] bg-[#EBF4E3] px-3 py-1 rounded-full border border-[#C8DCAE]">
+                    {leak.impact}
+                  </span>
+                </div>
+
+                {/* Problem Statement */}
+                <div>
+                  <h3 className="text-xl font-black text-[#1F2922] font-heading mb-2">
+                    {leak.title}
+                  </h3>
+                  <div className="bg-red-50/60 border border-red-100 rounded-2xl p-4 text-xs sm:text-sm text-red-900 leading-relaxed font-medium">
+                    <div className="flex items-start gap-2.5">
+                      <TrendingDown className="w-4 h-4 text-red-600 mt-0.5 flex-shrink-0" />
+                      <span>{leak.problem}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* The TutoLink Fix */}
+                <div className="bg-[#FAFDF8] border border-[#C8DCAE] rounded-2xl p-4 space-y-2">
+                  <div className="flex items-center gap-2 text-xs font-black text-[#1F2922] uppercase tracking-wide">
+                    <CheckCircle2 className="w-4 h-4 text-[#7B9D60]" />
+                    <span>The TutoLink Solution: {leak.solution}</span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#576659] leading-relaxed font-medium pl-6">
+                    {leak.solutionDesc}
+                  </p>
+                </div>
+
+              </div>
+
+              {/* Quick Action Footer */}
+              <div className="mt-6 pt-4 border-t border-[#E2EBDC] flex items-center justify-between">
+                <span className="text-xs font-bold text-[#1F2922]">
+                  Solve this in your institute:
+                </span>
+                <button
+                  onClick={onOpenDemoModal}
+                  className="text-xs font-extrabold text-[#7B9D60] hover:text-[#526E3A] flex items-center gap-1 group-hover:translate-x-1 transition-all"
+                >
+                  <span>See Live Fix</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Banner Transition */}
+        <div className="mt-14 bg-gradient-to-r from-[#1F2922] via-[#2A3B2E] to-[#1F2922] rounded-3xl p-6 sm:p-10 text-white shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="space-y-2 text-center md:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#7B9D60]/20 text-[#C8DCAE] text-xs font-bold border border-[#7B9D60]/30">
+              <Zap className="w-3.5 h-3.5 text-[#7B9D60]" />
+              <span>Zero Technical Knowledge Needed</span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-black font-heading tracking-tight">
+              Plug Every Leak in Under 10 Minutes.
             </h3>
-            <p className="text-xs sm:text-sm text-[#576659] mt-1 font-medium">
-              TutoLink brings all 7 essential learning touchpoints into one connected digital home.
+            <p className="text-sm text-white/80 max-w-xl font-medium">
+              We handle the software setup, student roster migration, and branding customization for free. You simply start teaching.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3 sm:gap-4">
-            {elements.map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <div 
-                  key={idx}
-                  className="bg-[#FAFDF8] border border-[#E2EBDC] p-4 rounded-2xl text-center hover:border-[#7B9D60] hover:shadow-md transition-all group flex flex-col items-center justify-between"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-[#F0F6EB] border border-[#C8DCAE] flex items-center justify-center text-[#7B9D60] mb-3 group-hover:scale-110 transition-transform">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs sm:text-sm font-extrabold text-[#1F2922] font-heading">
-                      {item.title}
-                    </h4>
-                    <p className="text-[10px] text-[#576659] mt-1 font-medium line-clamp-2">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Transition Banner */}
-          <div className="mt-8 pt-6 border-t border-[#E2EBDC] flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#F0F6EB]/60 p-4 rounded-2xl">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-[#7B9D60] text-white flex items-center justify-center font-bold text-xs">
-                ✓
-              </div>
-              <p className="text-xs sm:text-sm font-bold text-[#1F2922]">
-                Expand physical teaching into your institute's official digital platform.
-              </p>
-            </div>
-
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
             <button
               onClick={onOpenDemoModal}
-              className="shimmer-btn text-white font-extrabold px-5 py-2.5 rounded-full text-xs flex items-center gap-1.5 whitespace-nowrap shadow-sm"
+              className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#7B9D60] text-white font-extrabold text-sm hover:bg-[#68884E] transition-all shadow-lg flex items-center justify-center gap-2 whitespace-nowrap"
             >
-              <span>See How It Works</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>Schedule 15-Min Live Demo</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
           </div>
-
         </div>
 
       </div>
