@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 
 export default function DemoPage({ onOpenDemoModal }) {
-  const demoAppUrl = import.meta.env.VITE_APP_URL || "https://app.tutolink.in";
+  const demoAppUrl = import.meta.env.VITE_APP_URL || "https://tutolink.in";
 
   const portals = [
     {

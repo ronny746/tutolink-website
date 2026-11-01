@@ -33,7 +33,7 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
   const [needsLiveStreaming, setNeedsLiveStreaming] = useState(false);
   const [needsBrandedApp, setNeedsBrandedApp] = useState(false);
 
-  const demoAppUrl = import.meta.env.VITE_APP_URL || "https://app.tutolink.in";
+  const demoAppUrl = import.meta.env.VITE_APP_URL || "https://tutolink.in";
 
   // Calculate estimated price
   const calculateEstimatedPrice = () => {
