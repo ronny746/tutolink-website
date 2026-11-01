@@ -33,7 +33,7 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
   const [needsLiveStreaming, setNeedsLiveStreaming] = useState(false);
   const [needsBrandedApp, setNeedsBrandedApp] = useState(false);
 
-  const demoAppUrl = import.meta.env.VITE_APP_URL || "https://tutolink.in";
+  const demoAppUrl = import.meta.env.VITE_APP_URL || (typeof window !== 'undefined' && window.location.hostname === 'localhost' ? 'http://localhost:3002' : 'https://tutolink.in');
 
   // Calculate estimated price
   const calculateEstimatedPrice = () => {
@@ -73,7 +73,7 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
         "Create real computer-based mock tests with instant auto-checking & rank lists",
         "100% white-labeled under your coaching's name and logo"
       ],
-      demoLink: `${demoAppUrl}/skd-admin?demo=true`
+      demoLink: `${demoAppUrl}/demo?role=admin`
     },
     teacher: {
       title: "Teacher & Faculty Workspace",
@@ -86,7 +86,7 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
         "Answer student doubt questions with voice notes or annotated photos",
         "Mark batch attendance in 5 seconds with automatic absent alerts to parents"
       ],
-      demoLink: `${demoAppUrl}/skd-teacher?demo=true`
+      demoLink: `${demoAppUrl}/demo?role=teacher`
     },
     student: {
       title: "Student Mobile & Web Portal",
@@ -99,7 +99,7 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
         "Daily practice tests with step-by-step mathematical solutions",
         "Ask doubt questions directly to teachers with photo uploads"
       ],
-      demoLink: `${demoAppUrl}/student/dashboard?demo=true`
+      demoLink: `${demoAppUrl}/demo?role=student`
     },
     parent: {
       title: "Parent Transparency Desk",
@@ -112,7 +112,7 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
         "1-click fee payments via UPI (Google Pay, PhonePe, Paytm, BHIM)",
         "Instant official fee receipts saved on mobile for tax records"
       ],
-      demoLink: `${demoAppUrl}/parent/dashboard?demo=true`
+      demoLink: `${demoAppUrl}/demo?role=parent`
     }
   };
 
@@ -202,13 +202,13 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
 
       {/* 2. INSPIRING QUOTE CALLOUT */}
       <section className="px-4 lg:px-8 max-w-4xl mx-auto -mt-6 sm:-mt-10 relative z-10">
-        <div className="bg-white rounded-2xl border border-[#D9E8CA] p-6 sm:p-8 shadow-sm text-center space-y-3">
+        <div className="bg-white rounded-2xl border border-[#D9E8CA] p-6 sm:p-7 shadow-sm text-center space-y-2.5">
           <Quote className="w-6 h-6 text-[#7B9D60] mx-auto opacity-70" />
           <p className="text-sm sm:text-base font-bold text-[#28371B] leading-relaxed italic font-heading">
-            “Education is not a mass-market commodity. Real learning happens when a dedicated teacher connects with a student who is known, heard, and guided. We exist to bridge the digital divide for coaching institutes — so dedication defeats corporate scale, and everyone grows better together.”
+            “Teaching and mentoring students is your mastery. Providing the digital infrastructure, branded apps, and automated systems is ours. Together, we connect to grow better.”
           </p>
           <span className="text-xs text-[#5A7446] font-extrabold tracking-wide block">
-            — TutoLink • Connect to grow better
+            — TutoLink • Your Digital Technology Partner
           </span>
         </div>
       </section>

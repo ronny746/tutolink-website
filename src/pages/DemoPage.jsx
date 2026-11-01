@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 
 export default function DemoPage({ onOpenDemoModal }) {
-  const demoAppUrl = import.meta.env.VITE_APP_URL || "https://tutolink.in";
+  const demoAppUrl = import.meta.env.VITE_APP_URL || (typeof window !== 'undefined' && window.location.hostname === 'localhost' ? 'http://localhost:3002' : 'https://tutolink.in');
 
   const portals = [
     {
@@ -37,7 +37,7 @@ export default function DemoPage({ onOpenDemoModal }) {
         'Staff roles: Director, Faculty, Typist, Accountant & multi-branch',
         'WhatsApp fee reminders with 1-tap UPI & official stamped receipts'
       ],
-      link: `${demoAppUrl}/skd-admin?demo=true`,
+      link: `${demoAppUrl}/demo?role=admin`,
       btnText: 'Launch Director Portal',
       btnColor: 'bg-[#7B9D60] hover:bg-[#638249] text-white',
       featured: true
@@ -57,7 +57,7 @@ export default function DemoPage({ onOpenDemoModal }) {
         'Audio voice note & photo doubt resolution desk',
         '5-Second 1-tap batch attendance with automated absent alerts'
       ],
-      link: `${demoAppUrl}/skd-teacher?demo=true`,
+      link: `${demoAppUrl}/demo?role=teacher`,
       btnText: 'Launch Teacher Portal',
       btnColor: 'bg-amber-500 hover:bg-amber-600 text-slate-950 font-black',
       featured: false
@@ -78,7 +78,7 @@ export default function DemoPage({ onOpenDemoModal }) {
         'Ask doubts with in-browser voice note audio & photo uploads',
         'Official batch announcement channel & interactive class polls'
       ],
-      link: `${demoAppUrl}/student/dashboard?demo=true`,
+      link: `${demoAppUrl}/demo?role=student`,
       btnText: 'Launch Student Portal',
       btnColor: 'bg-[#28371B] hover:bg-[#3C5229] text-white',
       featured: false
@@ -97,7 +97,7 @@ export default function DemoPage({ onOpenDemoModal }) {
         '1-Tap UPI fee payments with instant stamped PDF receipts',
         'Upcoming test schedules, exam dates & direct teacher contacts'
       ],
-      link: `${demoAppUrl}/parent/dashboard?demo=true`,
+      link: `${demoAppUrl}/demo?role=parent`,
       btnText: 'Launch Parent Portal',
       btnColor: 'bg-slate-800 hover:bg-slate-900 text-white',
       featured: false
