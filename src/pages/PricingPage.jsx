@@ -25,6 +25,20 @@ export default function PricingPage({ onOpenDemoModal }) {
   const [needsBrandedApp, setNeedsBrandedApp] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
 
+  const calculateEstimatedPrice = () => {
+    let base = 1299;
+    if (studentCount > 300) {
+      base = 2499;
+    } else if (studentCount > 150) {
+      base = 1799;
+    }
+
+    let liveAddon = needsLiveStream ? 1200 : 0;
+    let appAddon = needsBrandedApp ? 1500 : 0;
+
+    return base + liveAddon + appAddon;
+  };
+
   // Generate dynamic WhatsApp message with selections
   const generateWhatsAppUrl = () => {
     let msg = `Hi TutoLink Team, I want to get a custom pricing quote for my coaching institute:\n`;
@@ -32,6 +46,7 @@ export default function PricingPage({ onOpenDemoModal }) {
     msg += `• Core Suite (CBT Exams + WhatsApp Fees + Web Portal): Included\n`;
     msg += `• In-House Live Streaming & Cloud Recording: ${needsLiveStream ? 'Yes' : 'Not needed right now'}\n`;
     msg += `• Branded Android App APK: ${needsBrandedApp ? 'Yes' : 'Web portal only'}\n`;
+    msg += `• Estimated Plan: ~₹${calculateEstimatedPrice().toLocaleString('en-IN')}/mo\n`;
     msg += `Please provide an honest quote and details for the 14-day free trial.`;
     return "https://wa.me/917052422066?text=" + encodeURIComponent(msg);
   };
@@ -197,7 +212,7 @@ export default function PricingPage({ onOpenDemoModal }) {
                     <span className="text-[10px] bg-[#ECF4E2] text-[#638249] border border-[#C1DAB0] px-2 py-0.2 rounded-full font-black">ALWAYS INCLUDED</span>
                   </div>
                   <p className="text-[11px] text-[#5A7446] mt-0.5">
-                    NTA CBT exam engine, 50,000+ question bank, DPP generator, automated WhatsApp fee due notices, UPI receipts, student &amp; parent web portals.
+                    NTA CBT exam engine, private question bank upload, DPP generator, automated WhatsApp fee due notices, UPI receipts, student &amp; parent web portals.
                   </p>
                 </div>
               </div>
@@ -261,13 +276,21 @@ export default function PricingPage({ onOpenDemoModal }) {
           {/* Right: Summary & Action Card */}
           <div className="lg:col-span-5 bg-white p-6 sm:p-7 rounded-2xl border border-[#D9E8CA] shadow-sm space-y-5">
             
-            <div className="border-b border-[#D9E8CA]/60 pb-3">
-              <span className="text-[10px] font-black uppercase text-[#638249] tracking-wider">
-                Your Tailored Plan Summary
-              </span>
-              <h3 className="text-lg font-black text-[#28371B] mt-0.5 font-heading">
-                Ready for Honest Consultation
-              </h3>
+            <div className="border-b border-[#D9E8CA]/60 pb-3 flex items-center justify-between">
+              <div>
+                <span className="text-[10px] font-black uppercase text-[#638249] tracking-wider block">
+                  Your Tailored Plan Summary
+                </span>
+                <h3 className="text-lg font-black text-[#28371B] mt-0.5 font-heading">
+                  Ready for Consultation
+                </h3>
+              </div>
+              <div className="text-right">
+                <span className="text-[10px] text-[#5A7446] font-bold block">Estimated:</span>
+                <span className="text-xl font-black text-[#28371B]">
+                  ~₹{calculateEstimatedPrice().toLocaleString('en-IN')}<span className="text-[10px] font-bold text-[#5A7446]">/mo</span>
+                </span>
+              </div>
             </div>
 
             <div className="space-y-2.5 text-xs">

@@ -11,72 +11,106 @@ import {
   Sparkles, 
   Video, 
   Smartphone, 
-  DollarSign, 
   Play, 
-  Monitor, 
   Clock, 
   HeartHandshake,
   Check,
-  Lock,
-  ChevronRight
+  FileCheck,
+  Phone,
+  HelpCircle,
+  Quote,
+  AlertCircle,
+  TrendingUp,
+  Flame
 } from 'lucide-react';
 
 export default function HomePage({ onNavigate, onOpenDemoModal }) {
+  // Live Demo Sandbox Role
   const [activeDemoRole, setActiveDemoRole] = useState('admin');
-  const [heroPreviewTab, setHeroPreviewTab] = useState('admin');
+
+  // Interactive Simple Estimator
+  const [studentCount, setStudentCount] = useState(120);
+  const [needsLiveStreaming, setNeedsLiveStreaming] = useState(false);
+  const [needsBrandedApp, setNeedsBrandedApp] = useState(false);
 
   const demoAppUrl = import.meta.env.VITE_APP_URL || "https://app.tutolink.in";
 
+  // Calculate estimated price
+  const calculateEstimatedPrice = () => {
+    let base = 1299;
+    if (studentCount > 300) {
+      base = 2499;
+    } else if (studentCount > 150) {
+      base = 1799;
+    }
+
+    let liveAddon = needsLiveStreaming ? 1200 : 0;
+    let appAddon = needsBrandedApp ? 1500 : 0;
+
+    return base + liveAddon + appAddon;
+  };
+
+  const generateWhatsAppQuoteUrl = () => {
+    let msg = `Hi TutoLink Team, I calculated my coaching requirements on your website:\n`;
+    msg += `• Total Students: ${studentCount}\n`;
+    msg += `• Core Toolkit (Computer Tests + DPPs + WhatsApp Fees): Included\n`;
+    msg += `• Live Video Classes: ${needsLiveStreaming ? 'Yes' : 'Not needed right now'}\n`;
+    msg += `• Branded Mobile App: ${needsBrandedApp ? 'Yes' : 'Web portal only'}\n`;
+    msg += `• Estimated Plan: ~₹${calculateEstimatedPrice().toLocaleString('en-IN')}/mo\n`;
+    msg += `Please send me the written proposal and details for the 14-day free trial.`;
+    return "https://wa.me/917052422066?text=" + encodeURIComponent(msg);
+  };
+
   const demoRoles = {
     admin: {
-      title: "Institute Director & Admin Portal",
-      badge: "Complete Institute Operations",
+      title: "Institute Director & Admin Desk",
+      badge: "Complete Institute Control",
       icon: Building2,
-      headline: "Command center for batches, admissions, fee cashflow & staff control",
+      headline: "Everything you need to run your center smoothly — batches, fees, and staff.",
       highlights: [
-        "Create & allocate batches (offline, online, or hybrid) with assigned faculties",
-        "Automated installment fee schedules with instant digital PDF receipts",
-        "NTA CBT mock tests with instant auto-grading & All India Ranks",
-        "100% white-labeled under your coaching's name, logo & domain"
+        "Manage batches (offline, online, or hybrid) with assigned teachers",
+        "Polite automated WhatsApp fee reminders with instant stamped PDF receipts",
+        "Create real computer-based mock tests with instant auto-checking & rank lists",
+        "100% white-labeled under your coaching's name and logo"
       ],
       demoLink: `${demoAppUrl}/skd-admin?demo=true`
     },
     teacher: {
-      title: "Faculty & Teacher Workspace",
-      badge: "Classroom & Academics",
+      title: "Teacher & Faculty Workspace",
+      badge: "Classroom & Teaching",
       icon: Users,
-      headline: "Interactive live lectures, rapid DPP generation & student doubt resolution",
+      headline: "Spend less time checking papers and more time inspiring students.",
       highlights: [
-        "In-house HD live classes with auto-recorded batch lecture archives",
-        "Generate 15-min DPP practice sheets in 60s from pre-tagged question banks",
-        "Answer student doubt tickets with mathematical LaTeX formula formatting",
-        "Quick batch attendance with instant absent alerts to parents via WhatsApp"
+        "Host live video lectures with automatic recording for student revision",
+        "Create 15-minute daily practice problem sheets (DPP) in under 60 seconds",
+        "Answer student doubt questions with voice notes or annotated photos",
+        "Mark batch attendance in 5 seconds with automatic absent alerts to parents"
       ],
       demoLink: `${demoAppUrl}/skd-teacher?demo=true`
     },
     student: {
-      title: "Student Mobile & Web App",
-      badge: "High-Rank Exam Prep",
+      title: "Student Mobile & Web Portal",
+      badge: "Real Exam Practice",
       icon: GraduationCap,
-      headline: "Authentic NTA exam simulator, video lectures & chapter practice streaks",
+      headline: "Give your students the exact computer test practice used in JEE & NEET.",
       highlights: [
-        "Real JEE Main & NEET CBT exam interface with question status palette & timers",
-        "24/7 access to batch lecture recordings and protected PDF formula sheets",
-        "Daily practice problems (DPP) with step-by-step LaTeX solutions",
-        "Instant doubt submission desk with direct teacher annotations"
+        "Real NTA computer exam screen with question status colors and timers",
+        "Watch past class recordings anytime from home for easy revision",
+        "Daily practice tests with step-by-step mathematical solutions",
+        "Ask doubt questions directly to teachers with photo uploads"
       ],
       demoLink: `${demoAppUrl}/student/dashboard?demo=true`
     },
     parent: {
       title: "Parent Transparency Desk",
-      badge: "Parent Trust & Accountability",
+      badge: "Parent Trust & Peace of Mind",
       icon: User,
-      headline: "Real-time attendance check-in alerts, scorecards & digital fee receipts",
+      headline: "Parents stay informed without having to call your teachers repeatedly.",
       highlights: [
-        "Instant absent alerts via WhatsApp whenever a class or test is missed",
-        "Visual report cards showing test marks, percentiles and rank trajectory",
+        "Instant WhatsApp alert whenever a child enters class or is marked absent",
+        "Clear visual report cards showing test marks, rank, and progress over time",
         "1-click fee payments via UPI (Google Pay, PhonePe, Paytm, BHIM)",
-        "Official stamped PDF fee receipts generated instantly for taxation records"
+        "Instant official fee receipts saved on mobile for tax records"
       ],
       demoLink: `${demoAppUrl}/parent/dashboard?demo=true`
     }
@@ -85,70 +119,76 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
   const activeRoleData = demoRoles[activeDemoRole];
   const ActiveIcon = activeRoleData.icon;
 
-  const whatsappUrl = "https://wa.me/917052422066?text=" + encodeURIComponent("Hi TutoLink Team, I tried the live demo on your website and want to discuss setting this up for my coaching.");
+  const whatsappDirectUrl = "https://wa.me/917052422066?text=" + encodeURIComponent("Hi TutoLink Team, I want to book a live demo and discuss setting up my coaching institute.");
 
   return (
-    <div className="space-y-16 sm:space-y-20 pb-16">
+    <div className="space-y-16 sm:space-y-24 pb-16">
       
-      {/* 1. HERO SECTION (Matching new-tuto layout & dot grid) */}
-      <section className="relative px-5 pt-28 pb-16 sm:pt-32 sm:pb-24 lg:px-8 border-b border-[#D9E8CA]/70 overflow-hidden bg-gradient-to-b from-[#ECF4E2]/40 via-[#fdfff9] to-[#fdfff9]">
-        {/* Subtle dot pattern from new-tuto */}
+      {/* 1. HERO SECTION (Simple, Warm, Inspiring) */}
+      <section className="relative px-4 pt-28 pb-14 sm:pt-36 sm:pb-20 lg:px-8 border-b border-[#D9E8CA]/70 overflow-hidden bg-gradient-to-b from-[#ECF4E2]/45 via-[#fdfff9] to-[#fdfff9]">
+        
+        {/* Soft dot pattern */}
         <div 
           className="absolute inset-0 opacity-15 pointer-events-none" 
           style={{ backgroundImage: "radial-gradient(#7B9D60 1px, transparent 1px)", backgroundSize: "32px 32px" }} 
         />
 
-        <div className="relative mx-auto max-w-5xl text-center space-y-6">
+        <div className="relative mx-auto max-w-4xl text-center space-y-6">
           
-          {/* Top Pill from new-tuto */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#C1DAB0] bg-white px-3.5 py-1.5 text-xs font-extrabold text-[#638249] shadow-xs">
+          {/* Top Pill */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#C1DAB0] bg-white px-4 py-1.5 text-xs font-black text-[#638249] shadow-xs">
             <Sparkles className="h-3.5 w-3.5 text-[#7B9D60]" />
-            <span>The Operating System for Modern Coaching Institutes</span>
+            <span>The Smart Platform for Coaching Institutes</span>
           </div>
 
-          {/* Main Headline with new-tuto style */}
+          {/* Main Headline - Short, Catchy, High Impact */}
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight text-[#28371B] tracking-tight font-heading">
-            Scale Your Coaching Institute <br className="hidden sm:inline" />
-            With Your <span className="text-[#7B9D60] underline decoration-[#7B9D60]/30 underline-offset-8">Own Branded Platform.</span>
+            Your Coaching. Your Brand. <br className="hidden sm:inline" />
+            <span className="relative inline-block text-[#28371B]">
+              Zero Tech Headache.
+              <svg className="absolute -bottom-2 left-0 w-full h-2.5 text-[#7B9D60]/30 -z-10" viewBox="0 0 100 20" preserveAspectRatio="none">
+                <path d="M0,15 Q50,0 100,15" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" />
+              </svg>
+            </span>
           </h1>
 
-          {/* Benefit Subhead */}
-          <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-medium">
-            Stop juggling disconnected apps. Tutolink combines <strong>NTA-style CBT Online Tests</strong>, <strong>In-House Live Classes</strong>, <strong>Automated WhatsApp Fee Recovery</strong>, and <strong>Parent Scorecard Alerts</strong> under your institute's name.
+          {/* Subhead - Short, Single Punchy Sentence */}
+          <p className="text-sm sm:text-base text-[#5A7446] max-w-xl mx-auto leading-relaxed font-medium">
+            Real computer mock tests, polite WhatsApp fee collection, and live classes — all automated under your coaching's name.
           </p>
 
-          {/* Action Row */}
+          {/* Action Buttons */}
           <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
             <button
               onClick={() => onOpenDemoModal()}
-              className="px-6 py-3.5 rounded-2xl bg-[#7B9D60] hover:bg-[#638249] text-white text-xs sm:text-sm font-black shadow-lg shadow-emerald-800/15 transition-all flex items-center gap-2 hover:-translate-y-0.5"
+              className="px-7 py-3.5 rounded-xl bg-[#7B9D60] hover:bg-[#638249] text-white text-xs sm:text-sm font-black shadow-md hover:shadow-lg transition-all flex items-center gap-2 hover:-translate-y-0.5 cursor-pointer"
             >
-              <span>Schedule 1-on-1 Institute Demo</span>
+              <span>Book a Free 15-Min Demo</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
             <a
               href="#demo-sandbox"
-              className="px-5 py-3.5 rounded-2xl bg-white border border-[#C1DAB0] text-[#28371B] text-xs sm:text-sm font-bold hover:bg-[#ECF4E2]/50 transition flex items-center gap-2"
+              className="px-6 py-3.5 rounded-xl bg-white border border-[#C1DAB0] text-[#28371B] text-xs sm:text-sm font-black hover:bg-[#ECF4E2]/50 transition flex items-center gap-2 shadow-xs cursor-pointer"
             >
               <Play className="w-3.5 h-3.5 text-[#7B9D60] fill-[#7B9D60]" />
-              <span>Test Drive Live Demo</span>
+              <span>Try Live Demo (No Signup Needed)</span>
             </a>
           </div>
 
-          {/* Trust Highlights from new-tuto */}
-          <div className="pt-4 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs font-semibold text-slate-500">
+          {/* 4 Trust Highlights */}
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-5 sm:gap-8 text-xs font-bold text-[#5A7446]">
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-[#7B9D60]" />
-              <span>Live in 24 Hours</span>
+              <span>14-Day Free Trial</span>
             </span>
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-[#7B9D60]" />
-              <span>100% White-Labeled</span>
+              <span>0% Commission on Fees</span>
             </span>
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-[#7B9D60]" />
-              <span>0% Platform Commission</span>
+              <span>Your Own Logo &amp; Name</span>
             </span>
             <span className="flex items-center gap-1.5">
               <CheckCircle2 className="w-4 h-4 text-[#7B9D60]" />
@@ -157,148 +197,513 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
           </div>
 
         </div>
+      </section>
 
-        {/* Minimalist Dashboard Showcase Card from new-tuto */}
-        <div className="max-w-5xl mx-auto mt-12 sm:mt-16">
-          <div className="rounded-3xl border border-[#C1DAB0] bg-white p-3 sm:p-5 shadow-2xl space-y-4">
-            
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3 px-2">
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-red-400" />
-                <span className="w-3 h-3 rounded-full bg-amber-400" />
-                <span className="w-3 h-3 rounded-full bg-emerald-400" />
-                <span className="text-xs font-bold text-slate-400 ml-2">Tutolink Academy Hub • Live Snapshot</span>
+
+      {/* 2. INSPIRING QUOTE CALLOUT */}
+      <section className="px-4 lg:px-8 max-w-4xl mx-auto -mt-6 sm:-mt-10 relative z-10">
+        <div className="bg-white rounded-2xl border border-[#D9E8CA] p-6 sm:p-8 shadow-sm text-center space-y-3">
+          <Quote className="w-6 h-6 text-[#7B9D60] mx-auto opacity-70" />
+          <p className="text-sm sm:text-base font-bold text-[#28371B] leading-relaxed italic font-heading">
+            “Education is not a mass-market commodity. Real learning happens when a dedicated teacher connects with a student who is known, heard, and guided. We exist to bridge the digital divide for coaching institutes — so dedication defeats corporate scale, and everyone grows better together.”
+          </p>
+          <span className="text-xs text-[#5A7446] font-extrabold tracking-wide block">
+            — TutoLink • Connect to grow better
+          </span>
+        </div>
+      </section>
+
+
+      {/* 2.5 THE DIGITAL SHIFT & FOMO SECTION (Students Don't Leave Good Teachers) */}
+      <section className="px-4 lg:px-8 max-w-6xl mx-auto space-y-10">
+        
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-50 border border-amber-200 text-xs font-black uppercase text-amber-900 tracking-wider shadow-xs">
+            <Flame className="w-3.5 h-3.5 text-amber-600" />
+            <span>The 2026 Education Reality</span>
+          </div>
+
+          <h2 className="text-2xl sm:text-4xl font-black text-[#28371B] font-heading tracking-tight leading-tight">
+            Students Don’t Leave Good Teachers. <br className="hidden sm:inline" />
+            <span className="text-amber-800">They Leave Outdated Systems.</span>
+          </h2>
+
+          <p className="text-xs sm:text-sm text-[#5A7446] font-medium leading-relaxed max-w-2xl mx-auto">
+            Whether you teach 15 students in a personal tutorial or run a 500-student coaching institute — in today's digital world, great teaching alone is no longer enough. If your coaching is absent on mobile after 7 PM, you are quietly losing students to competitors.
+          </p>
+        </div>
+
+        {/* 3 Reality Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          {/* Card 1: The 7 PM Drop-off */}
+          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#D9E8CA] shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between group">
+            <div className="space-y-3.5">
+              <div className="flex items-center justify-between pb-3 border-b border-[#D9E8CA]/60">
+                <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-200">
+                  REALITY #1
+                </span>
+                <span className="text-[11px] font-bold text-amber-800">Evening Study Gap</span>
               </div>
-              <div className="flex bg-slate-100 p-1 rounded-xl text-xs font-bold">
-                <button
-                  onClick={() => setHeroPreviewTab('admin')}
-                  className={`px-3 py-1 rounded-lg transition ${heroPreviewTab === 'admin' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500'}`}
-                >
-                  Admin Operations
-                </button>
-                <button
-                  onClick={() => setHeroPreviewTab('cbt')}
-                  className={`px-3 py-1 rounded-lg transition ${heroPreviewTab === 'cbt' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500'}`}
-                >
-                  CBT Exams Engine
-                </button>
-                <button
-                  onClick={() => setHeroPreviewTab('fees')}
-                  className={`px-3 py-1 rounded-lg transition ${heroPreviewTab === 'fees' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-500'}`}
-                >
-                  Fee Cashflow
-                </button>
+
+              <div className="w-10 h-10 rounded-2xl bg-amber-50 text-amber-800 flex items-center justify-center font-bold">
+                <Smartphone className="w-5 h-5 text-amber-700" />
               </div>
+
+              <h3 className="text-base sm:text-lg font-black text-[#28371B] font-heading leading-snug">
+                Where do your students go after 7 PM?
+              </h3>
+
+              <p className="text-xs text-[#5A7446] leading-relaxed font-medium">
+                When classroom doors close, student self-study begins. If you don't offer recorded lecture revisions and phone test series, they open YouTube and rival apps — gradually disconnecting from your coaching.
+              </p>
             </div>
 
-            {/* Dashboard Content Simulation from new-tuto */}
-            {heroPreviewTab === 'admin' && (
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-2">
-                <div className="p-4 rounded-2xl bg-[#ECF4E2]/50 border border-[#C1DAB0] space-y-1">
-                  <p className="text-[11px] font-bold text-[#638249] uppercase">Enrolled Students</p>
-                  <p className="text-2xl font-black text-[#28371B]">1,280</p>
-                  <p className="text-[10px] text-emerald-700 font-semibold">+18% this month</p>
-                </div>
-                <div className="p-4 rounded-2xl bg-blue-50/50 border border-blue-200 space-y-1">
-                  <p className="text-[11px] font-bold text-blue-700 uppercase">Active Batches</p>
-                  <p className="text-2xl font-black text-slate-800">14</p>
-                  <p className="text-[10px] text-slate-500 font-semibold">NEET &amp; JEE Droppers</p>
-                </div>
-                <div className="p-4 rounded-2xl bg-amber-50/50 border border-amber-200 space-y-1">
-                  <p className="text-[11px] font-bold text-amber-700 uppercase">Today Attendance</p>
-                  <p className="text-2xl font-black text-slate-800">94.8%</p>
-                  <p className="text-[10px] text-amber-800 font-semibold">RFID &amp; QR Verified</p>
-                </div>
-                <div className="p-4 rounded-2xl bg-purple-50/50 border border-purple-200 space-y-1">
-                  <p className="text-[11px] font-bold text-purple-700 uppercase">Live Classes Today</p>
-                  <p className="text-2xl font-black text-slate-800">8 Sessions</p>
-                  <p className="text-[10px] text-purple-800 font-semibold">In-House Streaming Active</p>
-                </div>
+            <div className="pt-3 border-t border-[#D9E8CA]/60">
+              <div className="flex items-center gap-2 text-[11px] font-bold text-amber-900 bg-amber-50/80 px-3 py-1.5 rounded-xl border border-amber-200/60">
+                <AlertCircle className="w-3.5 h-3.5 text-amber-700 flex-shrink-0" />
+                <span>78% of students revise via apps every night</span>
               </div>
-            )}
+            </div>
+          </div>
 
-            {heroPreviewTab === 'cbt' && (
-              <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-800">NTA Standard Mock Test Simulation: All India NEET Minor #4</span>
-                  <span className="text-[10px] font-extrabold px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-full">+4 / -1 Rules</span>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                  <div className="p-3 bg-white rounded-xl border border-slate-200">
-                    <span className="text-slate-400 text-[10px] uppercase font-bold block">Test Format</span>
-                    <span className="font-bold text-slate-800">Physics, Chemistry, Botany, Zoology</span>
-                  </div>
-                  <div className="p-3 bg-white rounded-xl border border-slate-200">
-                    <span className="text-slate-400 text-[10px] uppercase font-bold block">Question Palette</span>
-                    <span className="font-bold text-slate-800">Answered, Marked, Unvisited</span>
-                  </div>
-                  <div className="p-3 bg-white rounded-xl border border-slate-200">
-                    <span className="text-slate-400 text-[10px] uppercase font-bold block">Result Deliverable</span>
-                    <span className="font-bold text-slate-800">Instant Percentile &amp; Weak Topic Card</span>
-                  </div>
-                </div>
+          {/* Card 2: Exams Went Computer-Based */}
+          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#D9E8CA] shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between group">
+            <div className="space-y-3.5">
+              <div className="flex items-center justify-between pb-3 border-b border-[#D9E8CA]/60">
+                <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-[#ECF4E2] text-[#638249] border border-[#C1DAB0]">
+                  REALITY #2
+                </span>
+                <span className="text-[11px] font-bold text-[#638249]">Exam Shift</span>
               </div>
-            )}
 
-            {heroPreviewTab === 'fees' && (
-              <div className="p-4 rounded-2xl bg-emerald-50/40 border border-emerald-200 space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-emerald-950">Automated Installment Billing &amp; Digital Receipts</span>
-                  <span className="text-[10px] font-extrabold px-2.5 py-0.5 bg-[#7B9D60] text-white rounded-full">UPI Enabled</span>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                  <div className="p-3 bg-white rounded-xl border border-emerald-100">
-                    <span className="text-slate-400 text-[10px] uppercase font-bold block">Collection Rate</span>
-                    <span className="font-black text-emerald-800 text-base">98.4%</span>
-                  </div>
-                  <div className="p-3 bg-white rounded-xl border border-emerald-100">
-                    <span className="text-slate-400 text-[10px] uppercase font-bold block">Automated Reminders</span>
-                    <span className="font-bold text-slate-800">WhatsApp 3 Days Prior</span>
-                  </div>
-                  <div className="p-3 bg-white rounded-xl border border-emerald-100">
-                    <span className="text-slate-400 text-[10px] uppercase font-bold block">Official Receipts</span>
-                    <span className="font-bold text-slate-800">Instant PDF with Institute Stamp</span>
-                  </div>
-                </div>
+              <div className="w-10 h-10 rounded-2xl bg-[#ECF4E2] text-[#638249] flex items-center justify-center font-bold">
+                <FileCheck className="w-5 h-5 text-[#7B9D60]" />
               </div>
-            )}
+
+              <h3 className="text-base sm:text-lg font-black text-[#28371B] font-heading leading-snug">
+                Paper tests can’t prepare for online exams
+              </h3>
+
+              <p className="text-xs text-[#5A7446] leading-relaxed font-medium">
+                JEE, NEET, CUET, and government exams are 100% computer-based with strict timers and negative marking. Parents refuse to pay full fees for coachings that still hand out xeroxed papers with delayed checking.
+              </p>
+            </div>
+
+            <div className="pt-3 border-t border-[#D9E8CA]/60">
+              <div className="flex items-center gap-2 text-[11px] font-bold text-[#638249] bg-[#ECF4E2]/70 px-3 py-1.5 rounded-xl border border-[#C1DAB0]/60">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#7B9D60] flex-shrink-0" />
+                <span>NTA &amp; CUET require real computer mock drill</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: The Tech-Enabled Academy Next Door */}
+          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#D9E8CA] shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between group">
+            <div className="space-y-3.5">
+              <div className="flex items-center justify-between pb-3 border-b border-[#D9E8CA]/60">
+                <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-blue-100 text-blue-900 border border-blue-200">
+                  REALITY #3
+                </span>
+                <span className="text-[11px] font-bold text-blue-800">Admission Battle</span>
+              </div>
+
+              <div className="w-10 h-10 rounded-2xl bg-blue-50 text-blue-800 flex items-center justify-center font-bold">
+                <TrendingUp className="w-5 h-5 text-blue-700" />
+              </div>
+
+              <h3 className="text-base sm:text-lg font-black text-[#28371B] font-heading leading-snug">
+                Tech-ready coachings are taking the admissions
+              </h3>
+
+              <p className="text-xs text-[#5A7446] leading-relaxed font-medium">
+                When parents compare two local teachers of equal talent, they consistently choose the one offering a dedicated mobile app, transparent WhatsApp reports, and instant fee receipts. Technology creates instant prestige.
+              </p>
+            </div>
+
+            <div className="pt-3 border-t border-[#D9E8CA]/60">
+              <div className="flex items-center gap-2 text-[11px] font-bold text-blue-900 bg-blue-50/80 px-3 py-1.5 rounded-xl border border-blue-200/60">
+                <Sparkles className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
+                <span>85% of parents favor institutes with an app</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Wake-Up Conversion Strip */}
+        <div className="bg-gradient-to-r from-[#28371B] via-[#3C5229] to-[#28371B] rounded-3xl p-6 sm:p-8 text-white shadow-md flex flex-col md:flex-row items-center justify-between gap-6 border border-[#4D6736]">
+          <div className="space-y-1.5 text-center md:text-left max-w-2xl">
+            <span className="text-[10px] font-black uppercase tracking-wider text-amber-300">
+              Don’t Lose Your Hard-Earned Reputation
+            </span>
+            <h4 className="text-base sm:text-xl font-black font-heading leading-snug text-white">
+              You built your teaching trust over years. Don't let a lack of software hand your students to competitors.
+            </h4>
+            <p className="text-xs text-white/80 font-medium">
+              Launch your coaching's branded tests, live classes, and WhatsApp updates in under 2 hours.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto flex-shrink-0">
+            <button
+              onClick={onOpenDemoModal}
+              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Protect Your Batches Free</span>
+              <ArrowRight className="w-3.5 h-3.5 text-slate-950" />
+            </button>
+            <a
+              href="#modular-architecture"
+              className="w-full sm:w-auto px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-bold transition flex items-center justify-center gap-1.5 cursor-pointer"
+            >
+              <span>See Starting Prices</span>
+            </a>
           </div>
         </div>
 
       </section>
 
-      {/* 2. LIVE UNGATED DEMO SANDBOX (Matching new-tuto lines 546-662) */}
-      <section id="demo-sandbox" className="py-16 sm:py-20 px-5 lg:px-8 bg-[#ECF4E2]/50 border-y border-[#D9E8CA]">
+
+      {/* 3. "START SIMPLE, GROW AT YOUR OWN PACE" (Simple 3-Part Modular Setup) */}
+      <section id="modular-architecture" className="px-4 lg:px-8 max-w-6xl mx-auto space-y-12">
+        
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#ECF4E2] border border-[#C1DAB0] text-xs font-black uppercase text-[#638249] tracking-wider shadow-xs">
+            <span>Modular &amp; Fair</span>
+          </div>
+
+          <h2 className="text-2xl sm:text-4xl font-black text-[#28371B] font-heading tracking-tight">
+            Pay For What You Use. <br className="hidden sm:inline" />
+            Nothing More.
+          </h2>
+
+          <p className="text-xs sm:text-sm text-[#5A7446] font-medium leading-relaxed">
+            Start with tests and fee collection. Add live classes or your own mobile app whenever you are ready.
+          </p>
+        </div>
+
+        {/* 3 Simple Options Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          {/* Card 1: Daily Essentials */}
+          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#D9E8CA] shadow-sm hover:shadow-md transition space-y-5 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-[#D9E8CA]/60">
+                <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-[#ECF4E2] text-[#638249] border border-[#C1DAB0]">
+                  STEP 1 • ESSENTIALS
+                </span>
+                <span className="text-xs font-black text-[#7B9D60]">Always Included</span>
+              </div>
+
+              <div className="w-10 h-10 rounded-xl bg-[#ECF4E2] text-[#638249] flex items-center justify-center font-bold">
+                <FileCheck className="w-5 h-5" />
+              </div>
+
+              <h3 className="text-lg font-black text-[#28371B] font-heading">
+                Offline Coaching Core
+              </h3>
+
+              <p className="text-xs text-[#5A7446] leading-relaxed font-medium">
+                The daily toolkit to automate tests, stop manual paper checking, and collect student fees on time.
+              </p>
+
+              <div className="space-y-2.5 pt-2 text-xs font-semibold text-[#28371B]">
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>Real Computer Tests (NTA screen with +4 / -1 rules)</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>Upload Your Question Bank (Word/Excel) &amp; 1-Min Practice Sheet Maker</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>Polite WhatsApp Fee Reminders with 1-Tap UPI Links</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>Official Stamped PDF Fee Receipts for Parents</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>1-Tap Attendance with Instant Absent Alerts to Parents</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-[#D9E8CA]/60 text-[11px] font-bold text-[#638249]">
+              ✓ Perfect for offline tuition &amp; exam test centers
+            </div>
+          </div>
+
+          {/* Card 2: Live Video & Recordings */}
+          <div className="bg-white rounded-3xl p-6 sm:p-7 border-2 border-[#7B9D60] shadow-md transition space-y-5 flex flex-col justify-between relative">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#7B9D60] text-white text-[10px] font-black uppercase px-3 py-0.5 rounded-full shadow-xs tracking-wider">
+              ⭐ MOST POPULAR
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-[#D9E8CA]/60">
+                <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
+                  STEP 2 • LIVE CLASSES
+                </span>
+                <span className="text-xs font-bold text-[#5A7446]">Add Anytime</span>
+              </div>
+
+              <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center font-bold">
+                <Video className="w-5 h-5" />
+              </div>
+
+              <h3 className="text-lg font-black text-[#28371B] font-heading">
+                Live Classes &amp; Revision Library
+              </h3>
+
+              <p className="text-xs text-[#5A7446] leading-relaxed font-medium">
+                Host smooth interactive lectures that save automatically for 24/7 student revision.
+              </p>
+
+              <div className="space-y-2.5 pt-2 text-xs font-semibold text-[#28371B]">
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>Clear HD Live Classes (Works even on normal mobile internet)</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>Automatic Class Recording saved in batch library</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>Anti-Leak Watermark (Shows student roll code on screen)</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>Protected PDF Chapter Notes (Prevent unauthorized download)</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>Audio Doubt Desk (Students can record voice questions)</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-[#D9E8CA]/60 text-[11px] font-bold text-[#638249]">
+              ✓ For evening batches &amp; hybrid NEET/JEE coaching
+            </div>
+          </div>
+
+          {/* Card 3: Your Own Branded App */}
+          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#D9E8CA] shadow-sm hover:shadow-md transition space-y-5 flex flex-col justify-between">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between pb-3 border-b border-[#D9E8CA]/60">
+                <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
+                  STEP 3 • BRAND POWER
+                </span>
+                <span className="text-xs font-bold text-[#5A7446]">Growth Scale</span>
+              </div>
+
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-800 flex items-center justify-center font-bold">
+                <Smartphone className="w-5 h-5" />
+              </div>
+
+              <h3 className="text-lg font-black text-[#28371B] font-heading">
+                Your Own Mobile App
+              </h3>
+
+              <p className="text-xs text-[#5A7446] leading-relaxed font-medium">
+                Put your coaching app on students' phones with your own icon, brand colors, and full pride.
+              </p>
+
+              <div className="space-y-2.5 pt-2 text-xs font-semibold text-[#28371B]">
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>Your Android App published with your coaching icon</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>Your website link (e.g. classes.yourcoaching.com)</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>Keep 100% Fees — We never take a cut or commission</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>New Student Inquiry Manager so no walk-in lead is lost</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>Branch matrix to manage multiple centers easily</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-[#D9E8CA]/60 text-[11px] font-bold text-[#638249]">
+              ✓ For academies looking to dominate their city
+            </div>
+          </div>
+
+        </div>
+
+        {/* Quick Quotation Estimator Box (Simple & Clear) */}
+        <div className="bg-gradient-to-br from-white via-[#FAFCF9] to-[#ECF4E2]/30 rounded-3xl border border-[#D9E8CA] p-6 sm:p-10 shadow-sm space-y-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#D9E8CA]/60 pb-4">
+            <div>
+              <span className="text-[10px] font-black uppercase text-[#638249] tracking-wider block">
+                Simple Price Calculator
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black text-[#28371B] font-heading">
+                Calculate What Fits Your Coaching
+              </h3>
+            </div>
+            <div className="text-left sm:text-right">
+              <span className="text-[11px] text-[#5A7446] font-bold block">Estimated Monthly Cost:</span>
+              <span className="text-2xl sm:text-3xl font-black text-[#28371B] font-heading">
+                ~₹{calculateEstimatedPrice().toLocaleString('en-IN')}<span className="text-xs font-bold text-[#5A7446]">/mo</span>
+              </span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            {/* Left Controls */}
+            <div className="lg:col-span-7 space-y-6">
+              
+              {/* Slider */}
+              <div className="space-y-3 bg-white p-5 rounded-2xl border border-[#D9E8CA]">
+                <div className="flex justify-between items-center">
+                  <label className="text-xs font-bold text-[#28371B] flex items-center gap-2">
+                    <Users className="w-4 h-4 text-[#7B9D60]" />
+                    <span>How many students do you teach?</span>
+                  </label>
+                  <span className="px-3.5 py-1 bg-[#ECF4E2] border border-[#C1DAB0] rounded-xl text-[#638249] font-black text-sm">
+                    {studentCount} Students
+                  </span>
+                </div>
+
+                <input
+                  type="range"
+                  min="30"
+                  max="1000"
+                  step="10"
+                  value={studentCount}
+                  onChange={(e) => setStudentCount(parseInt(e.target.value))}
+                  className="w-full h-2 bg-[#D9E8CA]/60 rounded-lg appearance-none cursor-pointer accent-[#7B9D60]"
+                />
+
+                <div className="flex justify-between text-[11px] text-[#5A7446] font-semibold">
+                  <span>30 (Small Batch)</span>
+                  <span>250 (Growing Institute)</span>
+                  <span>1,000+ (Large Academy)</span>
+                </div>
+              </div>
+
+              {/* Toggles */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div 
+                  onClick={() => setNeedsLiveStreaming(!needsLiveStreaming)}
+                  className={`p-4 rounded-2xl border cursor-pointer transition flex items-start gap-3 ${
+                    needsLiveStreaming ? 'bg-white border-[#7B9D60] shadow-sm' : 'bg-white/70 border-[#D9E8CA] hover:border-[#7B9D60]/50'
+                  }`}
+                >
+                  <input 
+                    type="checkbox" 
+                    checked={needsLiveStreaming} 
+                    onChange={() => {}}
+                    className="w-4 h-4 rounded text-[#7B9D60] focus:ring-0 mt-0.5 cursor-pointer accent-[#7B9D60]" 
+                  />
+                  <div>
+                    <span className="text-xs font-bold text-[#28371B] block">Need Live Video Classes?</span>
+                    <span className="text-[11px] text-[#5A7446]">With automatic class recordings</span>
+                  </div>
+                </div>
+
+                <div 
+                  onClick={() => setNeedsBrandedApp(!needsBrandedApp)}
+                  className={`p-4 rounded-2xl border cursor-pointer transition flex items-start gap-3 ${
+                    needsBrandedApp ? 'bg-white border-[#7B9D60] shadow-sm' : 'bg-white/70 border-[#D9E8CA] hover:border-[#7B9D60]/50'
+                  }`}
+                >
+                  <input 
+                    type="checkbox" 
+                    checked={needsBrandedApp} 
+                    onChange={() => {}}
+                    className="w-4 h-4 rounded text-[#7B9D60] focus:ring-0 mt-0.5 cursor-pointer accent-[#7B9D60]" 
+                  />
+                  <div>
+                    <span className="text-xs font-bold text-[#28371B] block">Need Your Own Mobile App?</span>
+                    <span className="text-[11px] text-[#5A7446]">Published on Google Play Store</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Right Action */}
+            <div className="lg:col-span-5 bg-white p-6 rounded-2xl border border-[#D9E8CA] shadow-sm space-y-4 text-center">
+              <span className="text-xs font-black text-[#638249] uppercase tracking-wider block">
+                Instant Written Quote
+              </span>
+              <h4 className="text-base font-black text-[#28371B]">
+                Want an Exact Written Proposal?
+              </h4>
+              <p className="text-xs text-[#5A7446] font-medium leading-relaxed">
+                Connect directly with our engineering team on WhatsApp. We will reply within 10 minutes with a transparent written quote.
+              </p>
+              <a
+                href={generateWhatsAppQuoteUrl()}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full py-3.5 px-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <MessageCircle className="w-4 h-4 text-slate-950" />
+                <span>Get Exact Proposal on WhatsApp</span>
+              </a>
+              <p className="text-[10px] text-[#5A7446]">
+                ⚡ 0% commission on fees • Free 14-day setup included
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* 4. 1-CLICK UNGATED LIVE DEMO (Seeing is Believing) */}
+      <section id="demo-sandbox" className="py-16 sm:py-20 px-4 lg:px-8 bg-[#ECF4E2]/40 border-y border-[#D9E8CA]">
         <div className="max-w-6xl mx-auto space-y-12">
           
           <div className="text-center max-w-2xl mx-auto space-y-3">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#C1DAB0] text-xs font-extrabold text-[#638249]">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#C1DAB0] text-xs font-black text-[#638249]">
               <Sparkles size={13} className="text-[#7B9D60]" />
-              <span>Interactive Live Demo Sandbox</span>
+              <span>Instant Live Demo</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-black text-[#28371B] tracking-tight font-heading">
-              Test Drive Tutolink in Your Browser Right Now
+              No Calls. No Forms. <br className="hidden sm:inline" />
+              Just Test Drive.
             </h2>
-            <p className="text-xs sm:text-sm text-slate-600 font-medium">
-              Experience the actual platform with pre-configured JEE &amp; NEET sample data. Select any role below to launch directly into that workspace.
+            <p className="text-xs sm:text-sm text-[#5A7446] font-medium">
+              Tap any portal below to explore the live system with sample NEET &amp; JEE batches:
             </p>
           </div>
 
-          {/* Minimalist 4-Role Switcher from new-tuto */}
+          {/* 4-Role Switcher Tabs */}
           <div className="flex flex-wrap items-center justify-center gap-2 p-1.5 bg-white rounded-2xl border border-[#D9E8CA] max-w-xl mx-auto shadow-sm">
             {[
-              { id: 'admin', label: 'Institute Admin' },
-              { id: 'teacher', label: 'Teacher' },
-              { id: 'student', label: 'Student' },
-              { id: 'parent', label: 'Parent' }
+              { id: 'admin', label: 'Director Desk' },
+              { id: 'teacher', label: 'Teacher Desk' },
+              { id: 'student', label: 'Student View' },
+              { id: 'parent', label: 'Parent Desk' }
             ].map((r) => (
               <button
                 key={r.id}
                 onClick={() => setActiveDemoRole(r.id)}
-                className={`flex-1 min-w-[120px] py-2.5 px-3 rounded-xl text-xs font-extrabold transition capitalize ${
+                className={`flex-1 min-w-[110px] py-2.5 px-3 rounded-xl text-xs font-black transition capitalize cursor-pointer ${
                   activeDemoRole === r.id
                     ? 'bg-[#7B9D60] text-white shadow-sm'
-                    : 'text-slate-600 hover:text-slate-900'
+                    : 'text-[#28371B] hover:text-[#7B9D60]'
                 }`}
               >
                 {r.label}
@@ -306,26 +711,26 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
             ))}
           </div>
 
-          {/* Active Sandbox Presentation Box from new-tuto */}
-          <div className="bg-white rounded-3xl border border-[#D9E8CA] p-6 sm:p-10 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Active Sandbox Presentation Box */}
+          <div className="bg-white rounded-3xl border border-[#D9E8CA] p-6 sm:p-10 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ECF4E2] text-[#638249] text-xs font-bold border border-[#C1DAB0]">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#ECF4E2] text-[#638249] text-xs font-black border border-[#C1DAB0]">
                 <ActiveIcon size={14} />
                 <span>{activeRoleData.badge}</span>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight font-heading">
+              <h3 className="text-xl sm:text-2xl font-black text-[#28371B] tracking-tight font-heading">
                 {activeRoleData.title}
               </h3>
 
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+              <p className="text-xs sm:text-sm text-[#5A7446] leading-relaxed font-medium">
                 {activeRoleData.headline}
               </p>
 
               <div className="space-y-2.5 pt-2">
                 {activeRoleData.highlights.map((pt, i) => (
-                  <div key={i} className="flex items-start gap-2.5 text-xs text-slate-700 font-semibold">
+                  <div key={i} className="flex items-start gap-2.5 text-xs text-[#28371B] font-semibold">
                     <CheckCircle2 size={16} className="text-[#7B9D60] flex-shrink-0 mt-0.5" />
                     <span>{pt}</span>
                   </div>
@@ -337,53 +742,53 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
                   href={activeRoleData.demoLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="px-6 py-3.5 rounded-xl bg-[#7B9D60] hover:bg-[#638249] text-white text-xs sm:text-sm font-black shadow-md transition flex items-center gap-2"
+                  className="px-6 py-3.5 rounded-xl bg-[#7B9D60] hover:bg-[#638249] text-white text-xs sm:text-sm font-black shadow-md transition flex items-center gap-2 cursor-pointer"
                 >
                   <Sparkles size={15} />
-                  <span>1-Click Launch {activeDemoRole.toUpperCase()} Demo</span>
+                  <span>Launch Live {activeDemoRole.toUpperCase()} Workspace</span>
                 </a>
 
                 <button
                   onClick={() => onNavigate('demo')}
-                  className="px-4 py-3.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold transition"
+                  className="px-4 py-3.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-[#D9E8CA] text-[#28371B] text-xs font-bold transition cursor-pointer"
                 >
-                  View All 4 Sandbox Roles
+                  View All 4 Portals
                 </button>
               </div>
             </div>
 
-            {/* Sandbox Notice & Safety Guarantee Card from new-tuto */}
-            <div className="lg:col-span-5 bg-gradient-to-br from-[#28371B] to-[#4D6736] p-6 sm:p-8 rounded-3xl text-white shadow-inner space-y-4">
+            {/* Sandbox Notice & Safety Guarantee Card */}
+            <div className="lg:col-span-5 bg-gradient-to-br from-[#28371B] via-[#4D6736] to-[#7B9D60] p-6 sm:p-8 rounded-3xl text-white shadow-md space-y-4">
               <div className="flex items-center justify-between border-b border-white/10 pb-3">
-                <span className="text-xs font-bold text-amber-300 uppercase tracking-wider">Public Sandbox Mode</span>
-                <span className="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold">Live Data Active</span>
+                <span className="text-xs font-black text-amber-300 uppercase tracking-wider">Live Sandbox Mode</span>
+                <span className="text-[10px] bg-white/20 px-2 py-0.5 rounded-full font-bold">Sample Batches Active</span>
               </div>
 
-              <p className="text-xs text-white/80 leading-relaxed font-medium">
-                You can freely explore, test features, create sample batches, and evaluate tests in this live trial instance.
+              <p className="text-xs text-white/85 leading-relaxed font-medium">
+                You can freely create sample tests, grade student submissions, attempt mock exams, and generate practice sheets in this demo.
               </p>
 
               <div className="space-y-2 pt-1 text-xs text-white/90 font-medium">
                 <div className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Pre-loaded NEET &amp; JEE mock batches and exams</span>
+                  <span>Pre-loaded JEE &amp; NEET question banks and tests</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Test creation and report generation fully enabled</span>
+                  <span>Instant scorecard and percentile ranking enabled</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Lock className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Deletion locked to preserve shared sandbox data</span>
+                  <Check className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Data resets safely every 24 hours</span>
                 </div>
               </div>
 
               <div className="pt-3 border-t border-white/10">
                 <button
                   onClick={onOpenDemoModal}
-                  className="w-full py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black transition text-center shadow-xs"
+                  className="w-full py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black transition text-center shadow-md cursor-pointer"
                 >
-                  Request a Private Institute Trial
+                  Request a Private 14-Day Free Setup
                 </button>
               </div>
             </div>
@@ -393,161 +798,81 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
         </div>
       </section>
 
-      {/* 3. THE 4 ENGINES (Matching new-tuto lines 395-543) */}
-      <section id="features" className="py-16 px-5 lg:px-8 max-w-7xl mx-auto space-y-16">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-extrabold text-[#7B9D60] uppercase tracking-wider">Everything Under One Roof</span>
-          <h2 className="text-2xl sm:text-4xl font-black text-[#28371B] tracking-tight font-heading">
-            The 4 Engines Built to Grow Your Coaching Institute
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 font-medium">
-            Replace multiple disconnected subscriptions with one unified institute operating platform.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* 5. THE 14-DAY FREE TRIAL (Zero Risk, Experience Everything) */}
+      <section className="px-4 lg:px-8 max-w-5xl mx-auto">
+        <div className="bg-white rounded-3xl border border-[#D9E8CA] p-6 sm:p-10 shadow-sm space-y-6">
           
-          {/* Pillar 1 */}
-          <div className="bg-white rounded-3xl p-8 border border-[#D9E8CA] shadow-sm hover:shadow-md transition space-y-5 flex flex-col justify-between">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-violet-100 text-violet-700 flex items-center justify-center">
-                <Monitor size={24} />
-              </div>
-              <h3 className="text-xl font-black text-slate-900 font-heading">1. Real NTA CBT Exam Simulator &amp; DPP Generator</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
-                Give your students authentic entrance exam practice. Build JEE, NEET, and Board pattern tests with LaTeX formulas, diagrams, +4/-1 negative marking, section switching, and instant percentile rank scorecards.
-              </p>
-              <ul className="space-y-2 text-xs font-semibold text-slate-700">
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#7B9D60]" />
-                  <span>Timed Full-Screen Online Mock Tests</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#7B9D60]" />
-                  <span>Topic-wise Daily Practice Problems (DPP) with solutions</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#7B9D60]" />
-                  <span>Automated Chapter Weakness &amp; Time-Spent Analytics</span>
-                </li>
-              </ul>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#D9E8CA]/60 pb-4">
+            <div className="space-y-1">
+              <span className="text-[10px] font-black uppercase text-[#638249] tracking-wider block">
+                100% Risk-Free Guarantee
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black text-[#28371B] font-heading">
+                Try Free For 14 Days in Your Coaching
+              </h3>
             </div>
-            <button
-              onClick={() => onNavigate('features')}
-              className="text-xs font-extrabold text-[#7B9D60] hover:text-[#638249] flex items-center gap-1.5 self-start pt-2"
-            >
-              <span>Explore Exam Engine Capabilities</span>
-              <ChevronRight size={14} />
-            </button>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#ECF4E2] text-[#638249] border border-[#C1DAB0] text-xs font-black">
+              <ShieldCheck className="w-4 h-4" />
+              <span>No Credit Card Needed</span>
+            </div>
           </div>
 
-          {/* Pillar 2 */}
-          <div className="bg-white rounded-3xl p-8 border border-[#D9E8CA] shadow-sm hover:shadow-md transition space-y-5 flex flex-col justify-between">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center">
-                <Video size={24} />
+          <p className="text-xs sm:text-sm text-[#5A7446] leading-relaxed font-medium">
+            Run real computer tests and live classes with your actual students before paying a single rupee.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
+            <div className="p-4 bg-[#FAFCF9] rounded-2xl border border-[#D9E8CA] space-y-1.5">
+              <div className="w-8 h-8 rounded-xl bg-[#ECF4E2] text-[#638249] flex items-center justify-center font-bold text-xs">
+                01
               </div>
-              <h3 className="text-xl font-black text-slate-900 font-heading">2. In-House Live Classes &amp; Protected Study Notes</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
-                Host interactive video lectures directly in your portal. Classes automatically save into the batch recordings library, and chapter PDF workbooks remain shielded from unauthorized downloads.
+              <h4 className="font-black text-[#28371B] text-xs sm:text-sm">We Set Up Your Batches</h4>
+              <p className="text-[11px] text-[#5A7446] font-medium leading-relaxed">
+                Send your student list on WhatsApp or Excel. We create your portal in 2 hours.
               </p>
-              <ul className="space-y-2 text-xs font-semibold text-slate-700">
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#7B9D60]" />
-                  <span>Low-latency live lectures with in-stream student chat</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#7B9D60]" />
-                  <span>Batch-wise recorded video archives for 24/7 student revision</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#7B9D60]" />
-                  <span>Anti-piracy protected chapter PDF notes &amp; formula sheets</span>
-                </li>
-              </ul>
             </div>
-            <button
-              onClick={() => onNavigate('features')}
-              className="text-xs font-extrabold text-[#7B9D60] hover:text-[#638249] flex items-center gap-1.5 self-start pt-2"
-            >
-              <span>See Content Protection Details</span>
-              <ChevronRight size={14} />
-            </button>
+
+            <div className="p-4 bg-[#FAFCF9] rounded-2xl border border-[#D9E8CA] space-y-1.5">
+              <div className="w-8 h-8 rounded-xl bg-[#ECF4E2] text-[#638249] flex items-center justify-center font-bold text-xs">
+                02
+              </div>
+              <h4 className="font-black text-[#28371B] text-xs sm:text-sm">Test Real Classes &amp; Exams</h4>
+              <p className="text-[11px] text-[#5A7446] font-medium leading-relaxed">
+                Host live lectures and conduct mock tests with your actual students.
+              </p>
+            </div>
+
+            <div className="p-4 bg-[#FAFCF9] rounded-2xl border border-[#D9E8CA] space-y-1.5">
+              <div className="w-8 h-8 rounded-xl bg-[#ECF4E2] text-[#638249] flex items-center justify-center font-bold text-xs">
+                03
+              </div>
+              <h4 className="font-black text-[#28371B] text-xs sm:text-sm">Decide With Peace of Mind</h4>
+              <p className="text-[11px] text-[#5A7446] font-medium leading-relaxed">
+                Continue only if you love it. No contracts, no forced commitments.
+              </p>
+            </div>
           </div>
 
-          {/* Pillar 3 */}
-          <div className="bg-white rounded-3xl p-8 border border-[#D9E8CA] shadow-sm hover:shadow-md transition space-y-5 flex flex-col justify-between">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
-                <DollarSign size={24} />
-              </div>
-              <h3 className="text-xl font-black text-slate-900 font-heading">3. Automated Fee Installments &amp; Zero Commission</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
-                Never lose track of pending fees again. Configure custom installment plans per student, automate WhatsApp due date reminders with 1-click UPI links, and issue official stamped PDF receipts.
-              </p>
-              <ul className="space-y-2 text-xs font-semibold text-slate-700">
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#7B9D60]" />
-                  <span>Automated installment schedules with polite WhatsApp reminders</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#7B9D60]" />
-                  <span>Official branded PDF fee receipts issued instantly with stamp</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#7B9D60]" />
-                  <span>0% commission — 100% of student fees go straight to your bank</span>
-                </li>
-              </ul>
-            </div>
+          <div className="pt-2 flex flex-wrap items-center justify-between gap-4 border-t border-[#D9E8CA]/60">
+            <span className="text-xs font-bold text-[#28371B]">
+              Ready to claim your 14-day assisted institute setup?
+            </span>
             <button
-              onClick={() => onNavigate('features')}
-              className="text-xs font-extrabold text-[#7B9D60] hover:text-[#638249] flex items-center gap-1.5 self-start pt-2"
+              onClick={onOpenDemoModal}
+              className="px-6 py-2.5 rounded-xl bg-[#7B9D60] hover:bg-[#638249] text-white font-black text-xs shadow-xs transition flex items-center gap-1.5 cursor-pointer"
             >
-              <span>View Fee Automation Features</span>
-              <ChevronRight size={14} />
-            </button>
-          </div>
-
-          {/* Pillar 4 */}
-          <div className="bg-white rounded-3xl p-8 border border-[#D9E8CA] shadow-sm hover:shadow-md transition space-y-5 flex flex-col justify-between">
-            <div className="space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center">
-                <Smartphone size={24} />
-              </div>
-              <h3 className="text-xl font-black text-slate-900 font-heading">4. Parent Mobile Connect &amp; Instant Attendance</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
-                Delighted parents refer more students. Provide parents with direct mobile visibility into real-time attendance check-ins, exam rank progress cards, and faculty feedback notes.
-              </p>
-              <ul className="space-y-2 text-xs font-semibold text-slate-700">
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#7B9D60]" />
-                  <span>Instant student absent alerts sent via WhatsApp</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#7B9D60]" />
-                  <span>Visual scorecards showing rank trajectory and percentiles</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-[#7B9D60]" />
-                  <span>24/7 one-to-one student doubt resolution ticket desk</span>
-                </li>
-              </ul>
-            </div>
-            <button
-              onClick={() => onNavigate('features')}
-              className="text-xs font-extrabold text-[#7B9D60] hover:text-[#638249] flex items-center gap-1.5 self-start pt-2"
-            >
-              <span>Explore Parent Experience</span>
-              <ChevronRight size={14} />
+              <span>Activate 14-Day Free Setup</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
         </div>
       </section>
 
-      {/* 4. RADICAL HONESTY & THE FOUNDER PROMISE */}
-      <section className="px-5 lg:px-8 max-w-5xl mx-auto">
+
+      {/* 6. RADICAL HONESTY & THE FOUNDER PROMISE */}
+      <section className="px-4 lg:px-8 max-w-5xl mx-auto">
         <div className="bg-white rounded-3xl border border-[#D9E8CA] p-6 sm:p-10 shadow-sm space-y-6">
           
           <div className="flex items-center gap-3">
@@ -555,84 +880,94 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
               <HeartHandshake className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-[10px] font-black uppercase text-[#7B9D60] tracking-wider block">
+              <span className="text-[10px] font-black uppercase text-[#638249] tracking-wider block">
                 The Founder Promise
               </span>
               <h3 className="text-lg sm:text-xl font-black text-[#28371B] font-heading">
-                We Are Honest: We Are Newly Launching, Dedicated &amp; Personally Here For You
+                Built by Software Engineers, Not Sales Telecallers
               </h3>
             </div>
           </div>
 
-          <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
-            Unlike giant EdTech companies with hundreds of faceless tele-calling agents who forget you once you pay, <strong>we are an engineering-led team</strong>. Previously, we built custom, tailor-made software systems directly for individual coaching institutes. We packaged all those real operational learnings into TutoLink.
+          <p className="text-xs sm:text-sm text-[#5A7446] leading-relaxed font-medium">
+            We are engineering founders who previously built custom software for coaching institutes. When you message us, you talk directly with the engineers who write the code.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-1 text-xs">
-            <div className="p-4 bg-[#fdfff9] rounded-2xl border border-[#D9E8CA] space-y-1">
-              <span className="font-bold text-[#28371B] block">🚀 Direct Engineering Attention</span>
-              <span className="text-slate-500 text-[11px]">When you need help or a custom feature, you speak directly to the software builders.</span>
+            <div className="p-4 bg-[#FAFCF9] rounded-2xl border border-[#D9E8CA] space-y-1">
+              <span className="font-black text-[#28371B] block">🚀 Direct Developer Chat</span>
+              <span className="text-[#5A7446] text-[11px] font-medium leading-relaxed">
+                Connect directly with our engineering team on WhatsApp — no junior call center scripts.
+              </span>
             </div>
 
-            <div className="p-4 bg-[#fdfff9] rounded-2xl border border-[#D9E8CA] space-y-1">
-              <span className="font-bold text-[#28371B] block">⏱️ 12-Hour Support Response</span>
-              <span className="text-slate-500 text-[11px]">Any operational issue or question is addressed within 12 working hours. Guaranteed.</span>
+            <div className="p-4 bg-[#FAFCF9] rounded-2xl border border-[#D9E8CA] space-y-1">
+              <span className="font-black text-[#28371B] block">⏱️ 12-Hour Support Commitment</span>
+              <span className="text-[#5A7446] text-[11px] font-medium leading-relaxed">
+                Any technical question or issue during a class or exam is resolved within 12 working hours.
+              </span>
             </div>
 
-            <div className="p-4 bg-[#fdfff9] rounded-2xl border border-[#D9E8CA] space-y-1">
-              <span className="font-bold text-[#28371B] block">🤝 Evolving With Your Feedback</span>
-              <span className="text-slate-500 text-[11px]">We ship improvements weekly based on your exact teaching and batch needs.</span>
+            <div className="p-4 bg-[#FAFCF9] rounded-2xl border border-[#D9E8CA] space-y-1">
+              <span className="font-black text-[#28371B] block">🤝 Built Around Your Needs</span>
+              <span className="text-[#5A7446] text-[11px] font-medium leading-relaxed">
+                Need a custom report or test format? We gladly build features requested by our partner institutes.
+              </span>
             </div>
           </div>
 
-          <div className="pt-2 flex flex-wrap items-center justify-between gap-4 border-t border-[#D9E8CA]">
+          <div className="pt-2 flex flex-wrap items-center justify-between gap-4 border-t border-[#D9E8CA]/60">
             <span className="text-xs font-bold text-[#28371B]">
-              Want to see how TutoLink can work for your specific coaching setup?
+              Want to speak directly with our core engineering team?
             </span>
             <a
-              href={whatsappUrl}
+              href={whatsappDirectUrl}
               target="_blank"
               rel="noreferrer"
-              className="px-5 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-extrabold text-xs shadow-xs transition flex items-center gap-1.5"
+              className="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs shadow-xs transition flex items-center gap-1.5 cursor-pointer"
             >
-              <MessageCircle className="w-4 h-4" />
-              <span>Talk Directly With Us</span>
+              <MessageCircle className="w-4 h-4 text-slate-950" />
+              <span>Talk Directly With Us on WhatsApp</span>
             </a>
           </div>
 
         </div>
       </section>
 
-      {/* 5. FINAL CONVERSION CTA (Matching new-tuto lines 769-800) */}
-      <section className="px-5 lg:px-8 max-w-6xl mx-auto">
-        <div className="rounded-3xl p-8 sm:p-14 bg-gradient-to-br from-[#28371B] via-[#4D6736] to-[#7B9D60] text-white shadow-2xl text-center space-y-6 relative overflow-hidden">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/15 border border-white/20 text-xs font-bold text-amber-200">
+
+      {/* 7. WARM & CONVERTING BOTTOM BANNER */}
+      <section className="px-4 lg:px-8 max-w-6xl mx-auto">
+        <div className="rounded-3xl p-8 sm:p-14 bg-gradient-to-br from-[#28371B] via-[#4D6736] to-[#7B9D60] text-white shadow-xl text-center space-y-6 relative overflow-hidden">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/15 border border-white/20 text-xs font-black text-amber-200">
             <Sparkles size={14} />
-            <span>Ready to Modernize Your Coaching Institute?</span>
+            <span>Start Simple • Grow Fast</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl font-black tracking-tight max-w-2xl mx-auto leading-tight font-heading">
-            Give Your Institute the Technology Advantage It Deserves.
+          <h2 className="text-2xl sm:text-4xl font-black tracking-tight max-w-2xl mx-auto leading-tight font-heading text-white">
+            Focus on Teaching. We’ll Handle the Tech.
           </h2>
 
-          <p className="text-white/80 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed font-medium">
-            Fair, transparent subscription tailored to your student strength with 0% commission. Includes a 14-day free risk-free trial.
+          <p className="text-white/85 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed font-medium">
+            Save 15+ hours every week. Try TutoLink free for 14 days — no credit card, no risk.
           </p>
 
           <div className="pt-2 flex flex-wrap items-center justify-center gap-3.5">
             <button
               onClick={onOpenDemoModal}
-              className="px-7 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs sm:text-sm font-black shadow-lg transition flex items-center gap-2"
+              className="px-7 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs sm:text-sm font-black shadow-lg transition flex items-center gap-2 cursor-pointer"
             >
-              <span>Book a Free Live Demo</span>
+              <span>Book a Free Demo</span>
               <ArrowRight size={15} />
             </button>
-            <button
-              onClick={() => onNavigate('pricing')}
-              className="px-6 py-3.5 rounded-2xl bg-white/15 hover:bg-white/25 border border-white/30 text-white text-xs sm:text-sm font-bold transition"
+            <a
+              href={whatsappDirectUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="px-6 py-3.5 rounded-2xl bg-white/15 hover:bg-white/25 border border-white/30 text-white text-xs sm:text-sm font-bold transition flex items-center gap-2 cursor-pointer"
             >
-              How Pricing Works
-            </button>
+              <MessageCircle className="w-4 h-4" />
+              <span>Chat on WhatsApp</span>
+            </a>
           </div>
         </div>
       </section>
