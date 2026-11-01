@@ -35,29 +35,29 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
 
   const demoAppUrl = import.meta.env.VITE_APP_URL || (typeof window !== 'undefined' && window.location.hostname === 'localhost' ? 'http://localhost:3002' : 'https://tutolink.in');
 
-  // Calculate estimated price
+  // Calculate estimated price (Starting at ₹999/mo)
   const calculateEstimatedPrice = () => {
-    let base = 1299;
+    let base = 999;
     if (studentCount > 300) {
-      base = 2499;
+      base = 1999;
     } else if (studentCount > 150) {
-      base = 1799;
+      base = 1499;
     }
 
-    let liveAddon = needsLiveStreaming ? 1200 : 0;
-    let appAddon = needsBrandedApp ? 1500 : 0;
+    let liveAddon = needsLiveStreaming ? 1000 : 0;
+    let appAddon = needsBrandedApp ? 1200 : 0;
 
     return base + liveAddon + appAddon;
   };
 
   const generateWhatsAppQuoteUrl = () => {
     let msg = `Hi TutoLink Team, I calculated my coaching requirements on your website:\n`;
-    msg += `• Total Students: ${studentCount}\n`;
-    msg += `• Core Toolkit (Computer Tests + DPPs + WhatsApp Fees): Included\n`;
-    msg += `• Live Video Classes: ${needsLiveStreaming ? 'Yes' : 'Not needed right now'}\n`;
-    msg += `• Branded Mobile App: ${needsBrandedApp ? 'Yes' : 'Web portal only'}\n`;
-    msg += `• Estimated Plan: ~₹${calculateEstimatedPrice().toLocaleString('en-IN')}/mo\n`;
-    msg += `Please send me the written proposal and details for the 14-day free trial.`;
+    msg += `• Total Students: ~${studentCount} Students\n`;
+    msg += `• Core Toolkit (CBT Exams + DPPs + WhatsApp Fees): Starts at ₹999/mo (Includes 10 GB Storage)\n`;
+    msg += `• Live Video & Recorded Lecture Storage: ${needsLiveStreaming ? 'Yes (+₹1,000/mo)' : 'Not needed right now'}\n`;
+    msg += `• Personal Branded Android Mobile App: ${needsBrandedApp ? 'Yes (Play Store APK)' : 'Responsive Web Portal'}\n`;
+    msg += `• Estimated Plan: Starts from ~₹${calculateEstimatedPrice().toLocaleString('en-IN')}/mo\n`;
+    msg += `Please send me the written proposal and details for our 14-day free trial.`;
     return "https://wa.me/917052422066?text=" + encodeURIComponent(msg);
   };
 
@@ -391,9 +391,9 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
             <div className="space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-[#D9E8CA]/60">
                 <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-[#ECF4E2] text-[#638249] border border-[#C1DAB0]">
-                  STEP 1 • ESSENTIALS
+                  STEP 1 • CBT &amp; TESTS
                 </span>
-                <span className="text-xs font-black text-[#7B9D60]">Always Included</span>
+                <span className="text-xs font-black text-[#7B9D60]">Starts ₹999/mo</span>
               </div>
 
               <div className="w-10 h-10 rounded-xl bg-[#ECF4E2] text-[#638249] flex items-center justify-center font-bold">
@@ -401,43 +401,47 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
               </div>
 
               <h3 className="text-lg font-black text-[#28371B] font-heading">
-                Offline Coaching Core
+                CBT Test Series &amp; DPPs
               </h3>
 
               <p className="text-xs text-[#5A7446] leading-relaxed font-medium">
-                The daily toolkit to automate tests, stop manual paper checking, and collect student fees on time.
+                The core toolkit for mock computer exams, private question bank upload, and automated test grading.
               </p>
 
-              <div className="space-y-2.5 pt-2 text-xs font-semibold text-[#28371B]">
+              <div className="p-2.5 rounded-xl bg-[#ECF4E2]/60 border border-[#C1DAB0] text-[11px] font-bold text-[#28371B] flex items-center gap-2">
+                <span>⚡ Includes 10 GB Cloud Storage</span>
+              </div>
+
+              <div className="space-y-2.5 pt-1 text-xs font-semibold text-[#28371B]">
                 <div className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
                   <span>Real Computer Tests (NTA screen with +4 / -1 rules)</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
-                  <span>Upload Your Question Bank (Word/Excel) &amp; 1-Min Practice Sheet Maker</span>
+                  <span>Upload Question Bank in Word/Excel (with LaTeX)</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
-                  <span>Polite WhatsApp Fee Reminders with 1-Tap UPI Links</span>
+                  <span>Daily Practice Problems (DPP) in under 60 seconds</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
+                  <span>Polite WhatsApp Fee Reminders with 1-Tap UPI</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
                   <span>Official Stamped PDF Fee Receipts for Parents</span>
                 </div>
-                <div className="flex items-start gap-2">
-                  <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
-                  <span>1-Tap Attendance with Instant Absent Alerts to Parents</span>
-                </div>
               </div>
             </div>
 
             <div className="pt-4 border-t border-[#D9E8CA]/60 text-[11px] font-bold text-[#638249]">
-              ✓ Perfect for offline tuition &amp; exam test centers
+              ✓ Perfect for tuition centers &amp; exam test series
             </div>
           </div>
 
-          {/* Card 2: Live Video & Recordings */}
+          {/* Card 2: Academic Operations & Fees */}
           <div className="bg-white rounded-3xl p-6 sm:p-7 border-2 border-[#7B9D60] shadow-md transition space-y-5 flex flex-col justify-between relative">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#7B9D60] text-white text-[10px] font-black uppercase px-3 py-0.5 rounded-full shadow-xs tracking-wider">
               ⭐ MOST POPULAR
@@ -446,9 +450,9 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
             <div className="space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-[#D9E8CA]/60">
                 <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-200">
-                  STEP 2 • LIVE CLASSES
+                  STEP 2 • OPERATIONS
                 </span>
-                <span className="text-xs font-bold text-[#5A7446]">Add Anytime</span>
+                <span className="text-xs font-bold text-[#28371B]">Starts ₹1,799/mo</span>
               </div>
 
               <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center font-bold">
@@ -456,50 +460,54 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
               </div>
 
               <h3 className="text-lg font-black text-[#28371B] font-heading">
-                Live Classes &amp; Revision Library
+                Academic Suite &amp; Materials
               </h3>
 
               <p className="text-xs text-[#5A7446] leading-relaxed font-medium">
-                Host smooth interactive lectures that save automatically for 24/7 student revision.
+                Full batch attendance, student doubt desk, and anti-leak study materials distribution.
               </p>
 
-              <div className="space-y-2.5 pt-2 text-xs font-semibold text-[#28371B]">
+              <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-[11px] font-bold text-[#28371B] flex items-center gap-2">
+                <span>⚡ Includes 50 GB Cloud Storage</span>
+              </div>
+
+              <div className="space-y-2.5 pt-1 text-xs font-semibold text-[#28371B]">
                 <div className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
-                  <span>Clear HD Live Classes (Works even on normal mobile internet)</span>
+                  <span>Everything in CBT Tests Suite included</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
-                  <span>Automatic Class Recording saved in batch library</span>
+                  <span>Protected PDF Notes Bank (Anti-download watermark)</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
-                  <span>Anti-Leak Watermark (Shows student roll code on screen)</span>
+                  <span>1-Tap Attendance with Instant Absent WhatsApp Alerts</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
-                  <span>Protected PDF Chapter Notes (Prevent unauthorized download)</span>
+                  <span>Voice Note &amp; Photo Doubt Desk with Teacher Allocation</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
-                  <span>Audio Doubt Desk (Students can record voice questions)</span>
+                  <span>Director Dynamic Control (Disable student-to-student chats)</span>
                 </div>
               </div>
             </div>
 
             <div className="pt-4 border-t border-[#D9E8CA]/60 text-[11px] font-bold text-[#638249]">
-              ✓ For evening batches &amp; hybrid NEET/JEE coaching
+              ✓ For coaching centers replacing paper diaries &amp; fees
             </div>
           </div>
 
-          {/* Card 3: Your Own Branded App */}
+          {/* Card 3: Live Video & Personal App */}
           <div className="bg-white rounded-3xl p-6 sm:p-7 border border-[#D9E8CA] shadow-sm hover:shadow-md transition space-y-5 flex flex-col justify-between">
             <div className="space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-[#D9E8CA]/60">
                 <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
                   STEP 3 • BRAND POWER
                 </span>
-                <span className="text-xs font-bold text-[#5A7446]">Growth Scale</span>
+                <span className="text-xs font-bold text-[#5A7446]">Starts ₹2,999/mo</span>
               </div>
 
               <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-800 flex items-center justify-center font-bold">
@@ -507,39 +515,43 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
               </div>
 
               <h3 className="text-lg font-black text-[#28371B] font-heading">
-                Your Own Mobile App
+                Live Video &amp; Personal App
               </h3>
 
               <p className="text-xs text-[#5A7446] leading-relaxed font-medium">
-                Put your coaching app on students' phones with your own icon, brand colors, and full pride.
+                In-house live streaming studio, 200 GB media library, custom website domain, and personal mobile app.
               </p>
 
-              <div className="space-y-2.5 pt-2 text-xs font-semibold text-[#28371B]">
+              <div className="p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-[11px] font-bold text-[#28371B] flex items-center gap-2">
+                <span>⚡ Includes 200 GB Media Storage</span>
+              </div>
+
+              <div className="space-y-2.5 pt-1 text-xs font-semibold text-[#28371B]">
                 <div className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
-                  <span>Your Android App published with your coaching icon</span>
+                  <span>In-House HD Live Class Studio &amp; Auto-Recording</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
-                  <span>Your website link (e.g. classes.yourcoaching.com)</span>
+                  <span>Personal Branded Android App (Play Store APK)</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
-                  <span>Keep 100% Fees — We never take a cut or commission</span>
+                  <span>Custom Institute Domain (portal.yourcoaching.com)</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
-                  <span>New Student Inquiry Manager so no walk-in lead is lost</span>
+                  <span>Public Course &amp; Test Series Store (0% Commission)</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <Check className="w-4 h-4 text-[#7B9D60] flex-shrink-0 mt-0.5" />
-                  <span>Branch matrix to manage multiple centers easily</span>
+                  <span>Keep 100% Fees — Never pay a cut or platform tax</span>
                 </div>
               </div>
             </div>
 
             <div className="pt-4 border-t border-[#D9E8CA]/60 text-[11px] font-bold text-[#638249]">
-              ✓ For academies looking to dominate their city
+              ✓ For academies expanding online across their region
             </div>
           </div>
 
@@ -659,6 +671,15 @@ export default function HomePage({ onNavigate, onOpenDemoModal }) {
                 <MessageCircle className="w-4 h-4 text-slate-950" />
                 <span>Get Exact Proposal on WhatsApp</span>
               </a>
+
+              <button
+                onClick={() => onNavigate('pricing')}
+                className="w-full py-2.5 px-3 rounded-xl bg-[#ECF4E2] hover:bg-[#D9E8CA] text-[#28371B] font-bold text-xs transition flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <span>View Full Pricing &amp; Storage Breakdown</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#7B9D60]" />
+              </button>
+
               <p className="text-[10px] text-[#5A7446]">
                 ⚡ 0% commission on fees • Free 14-day setup included
               </p>
